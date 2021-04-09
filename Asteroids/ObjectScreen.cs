@@ -20,5 +20,9 @@ namespace Asteroids
         {
 
         }
+        protected bool ChangeState()
+        {
+            return true;
+        }
     }
 }

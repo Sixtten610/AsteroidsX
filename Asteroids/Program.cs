@@ -10,6 +10,8 @@ namespace Asteroids
         enum GameState
         {                
             title,
+            difficulty,
+            settings,
             game,
             end
         }
@@ -27,6 +29,8 @@ namespace Asteroids
 
             GameState screen = GameState.title;
 
+            
+
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
@@ -34,6 +38,13 @@ namespace Asteroids
 
                 if (screen == GameState.title)
                 {
+                    titleScreen.Update();
+                    titleScreen.Draw();
+                    
+                    if(titleScreen.isSinglePlayerPressed)
+                    {
+                        screen = GameState.game;
+                    }
                     
                 }
                 else if (screen == GameState.game)
@@ -47,6 +58,7 @@ namespace Asteroids
 
                 Raylib.EndDrawing();
             }
+
         }
     }
 }
