@@ -8,46 +8,25 @@ namespace Asteroids
     public class Button
     {
         static protected List<Button> Widgets = new List<Button>();
-        private int widgetID;
+        protected private int widgetID;
 
-        Rectangle hitbox = new Rectangle();
-        int textSize;
-        Color textColor;
-        Color buttonStaticColor;
-        Color buttonHighlightColor;
-        string caption;
-        int textMarginX;
-        int textMarginY;
+        protected Rectangle hitbox = new Rectangle();
+        protected int textSize;
+        protected Color textColor;
+        protected Color buttonStaticColor;
+        protected Color buttonHighlightColor;
+        protected string caption;
+        protected int textMarginX;
+        protected int textMarginY;
         static Vector2 mousePosition;
 
-        public Button 
-        (
-            int height, int width, int textSize, Color textColor, Color buttonStaticColor, Color buttonHighlightColor, 
-            int xPos, int yPos, string caption, int textMarginX, int textMarginY, int widgetID
-        )
-        {
-            hitbox.height = height;
-            hitbox.width = width;
-            hitbox.x = xPos;
-            hitbox.y = yPos;
-
-            this.textSize = textSize;
-            this.textColor = textColor;
-            this.buttonStaticColor = buttonStaticColor;
-            this.buttonHighlightColor = buttonHighlightColor;
-            this.caption = caption;
-            this.textMarginX = textMarginX;
-            this.textMarginY = textMarginY;
-            this.widgetID = widgetID;
-
-            Widgets.Add(this);
-        }
+        
         private static void Update()
         {
             mousePosition = Raylib.GetMousePosition();
         }
 
-        private void Draw()
+        protected virtual void Draw()
         {
             if (IfHover())
             {
@@ -71,7 +50,7 @@ namespace Asteroids
             }
         }
 
-        private bool IfHover()
+        protected bool IfHover()
         {
             if(Raylib.CheckCollisionPointRec(mousePosition, hitbox))
             {
@@ -82,7 +61,7 @@ namespace Asteroids
                 return false;
             }
         }
-        public bool IsPressed()
+        public virtual bool IsPressed()
         {
             if (IfHover() && Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
             {
