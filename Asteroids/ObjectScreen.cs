@@ -6,12 +6,6 @@ namespace Asteroids
 {
     public class ObjectScreen
     {
-        Vector2 mousePosition;
-
-        public virtual void GetMousePosition()
-        {
-            mousePosition = Raylib.GetMousePosition();
-        }
         public virtual void Update()
         {
 
@@ -19,10 +13,6 @@ namespace Asteroids
         public virtual void Draw()
         {
 
-        }
-        protected bool ChangeState()
-        {
-            return true;
         }
     }
 }

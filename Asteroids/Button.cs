@@ -7,8 +7,8 @@ namespace Asteroids
 {
     public class Button
     {
-        static protected List<Button> Widgets = new List<Button>();
-        protected private int widgetID;
+        protected static List<Button> widgets = new List<Button>();
+        protected int widgetID;
 
         protected Rectangle hitbox = new Rectangle();
         protected int textSize;
@@ -21,7 +21,7 @@ namespace Asteroids
         static Vector2 mousePosition;
 
         
-        private static void Update()
+        protected static void Update()
         {
             mousePosition = Raylib.GetMousePosition();
         }
@@ -37,15 +37,15 @@ namespace Asteroids
             Raylib.DrawText(caption, (int)hitbox.x + textMarginX, (int)hitbox.y + textMarginY, textSize, textColor);
         }
 
-        public static void DrawAll(int id)
+        public static void DrawAll(int idWidget)
         {
             Update();
 
-            for (int index = Widgets.Count - 1; index > -1; index--)
+            for (int index = widgets.Count - 1; index > -1; index--)
             {
-                if (Widgets[index].widgetID == id)
+                if (widgets[index].widgetID == idWidget)
                 {
-                    Widgets[index].Draw();
+                    widgets[index].Draw();
                 }
             }
         }
@@ -61,7 +61,7 @@ namespace Asteroids
                 return false;
             }
         }
-        public virtual bool IsPressed()
+        public bool IsPressed()
         {
             if (IfHover() && Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
             {

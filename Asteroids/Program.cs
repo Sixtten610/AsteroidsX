@@ -3,8 +3,6 @@ using Raylib_cs;
 
 namespace Asteroids
 {
-    
-    
     class Program
     {
         enum GameState
@@ -12,7 +10,8 @@ namespace Asteroids
             title,
             difficulty,
             settings,
-            game,
+            game1,
+            game2,
             end
         }
         
@@ -23,7 +22,7 @@ namespace Asteroids
 
             TitleScreen titleScreen = new TitleScreen();
 
-            Game game = new Game();
+            DifficultyScreen difficultyScreen = new DifficultyScreen();
 
             EndScreen endScreen = new EndScreen();
 
@@ -40,15 +39,31 @@ namespace Asteroids
                 {
                     titleScreen.Update();
                     titleScreen.Draw();
-                    
+
                     if(titleScreen.isSinglePlayerPressed)
                     {
-                        screen = GameState.game;
+                        screen = GameState.game1;
                     }
+                    else if (titleScreen.isMultiPlayerPressed)
+                    {
+
+                    }
+                    else if (titleScreen.isDifficultyPressed)
+                    {
+                        screen = GameState.difficulty;
+                    }
+
                     
                 }
-                else if (screen == GameState.game)
+                else if (screen == GameState.difficulty)
                 {
+                    difficultyScreen.Update();
+                    difficultyScreen.Draw();
+
+                    if (difficultyScreen.isBackPressed)
+                    {
+                        screen = GameState.title;
+                    }
                     
                 }
                 else if (screen == GameState.end)
