@@ -91,18 +91,24 @@ namespace Asteroids
             Raylib.DrawRectangle((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height, buttonSeriesSelectedColor);
         }
 
+        // syftet med metoden är att uppdatera vilken knapp i en knappserie som är vald
         public static void UpdateSeries(int idWidget, int idSeries)
         {
             Update();
 
+            // om ett klick görs av användaren körs resten av koden
             if (Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
             {
+                // listan med knappar av typen Serie söks igenom
                 for (int index = seriesWidgets.Count - 1; index > -1; index--)
                 {
+                    // om knapp index i serien trycktes hämtar blocket in den tidigare neddtryckna knappen och
+                    // sätter den som icke-neddtryckt. 
                     if (seriesWidgets[index].IsPressed())
                     {
                         seriesWidgets[GetButtonInButtonSeriesIsPressed(idWidget, idSeries)].buttonIsSelected = false;
 
+                        // om widgetID och seriesID är lika med parametrarna metoden tog emot gör den denna knapp till neddtryckt.
                         if (seriesWidgets[index].widgetID == idWidget && seriesWidgets[index].seriesID == idSeries)
                         {
                             seriesWidgets[index].buttonIsSelected = true;
