@@ -7,10 +7,10 @@ namespace Asteroids
     public class DifficultyScreen : ObjectScreen
     {
         // BUTTONS ###########################################
-        ButtonSeries easy = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 450, "EASY", 16, 6, 2, 1);
-        ButtonSeries medium = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 500, "MEDIUM", 16, 6, 2, 1);
-        ButtonSeries hard = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 550, "HARD", 16, 6, 2, 1);
-        ButtonSeries impossible = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 600, "IMPOSSIBLE", 16, 6, 2, 1);
+        ButtonSeries easy = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 450, "EASY", 16, 6, 2, 1, 0);
+        ButtonSeries medium = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 500, "MEDIUM", 16, 6, 2, 1, 1);
+        ButtonSeries hard = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 550, "HARD", 16, 6, 2, 1, 2);
+        ButtonSeries impossible = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 600, "IMPOSSIBLE", 16, 6, 2, 1, 3);
 
         Button back = new ButtonSingle(45, 120, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 50, 850, "BACK", 13, 6, 2);
 
