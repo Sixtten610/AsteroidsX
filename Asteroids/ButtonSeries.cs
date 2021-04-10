@@ -13,32 +13,6 @@ namespace Asteroids
         int seriesID;
         int seriesIDofButtonSeries;
 
-        public int GetButtonInButtonSeriesIsPressed(int seriesID)
-        {
-            for (int index = seriesWidgets.Count - 1; index > -1; index--)
-            {
-                if (seriesWidgets[index].seriesID == seriesID && seriesWidgets[index].buttonIsSelected)
-                {
-                    return seriesWidgets[index].seriesIDofButtonSeries;
-                }
-                    
-            }
-            return 0;
-        }
-        protected static void SetButtonInButtonSeriesIsPressed(int seriesID, int seriesIDofButtonSeries)
-        {
-            for (int index = seriesWidgets.Count - 1; index > -1; index--)
-            {
-                if (seriesWidgets[index].seriesID == seriesID && seriesWidgets[index].seriesIDofButtonSeries == seriesIDofButtonSeries)
-                {
-                    seriesWidgets[index].buttonIsSelected = true;
-                }
-                    
-            }
-
-        }
-
-
         public ButtonSeries
         (
             int height, int width, int textSize, Color textColor, Color buttonStaticColor, Color buttonHighlightColor, 
@@ -52,6 +26,7 @@ namespace Asteroids
             hitbox.y = yPos;
 
             // BUTTON SETTINGS
+            SetButtonInButtonSeriesIsPressed(seriesID, 0);
             this.textSize = textSize;
             this.textColor = textColor;
             this.buttonStaticColor = buttonStaticColor;
@@ -69,7 +44,33 @@ namespace Asteroids
             widgets.Add(this);
             seriesWidgets.Add(this);
         }
-        
+
+        public static int GetButtonInButtonSeriesIsPressed(int widgetID, int seriesID)
+        {
+            for (int index = seriesWidgets.Count - 1; index > -1; index--)
+            {
+                if (seriesWidgets[index].widgetID == widgetID && seriesWidgets[index].seriesID == seriesID && seriesWidgets[index].buttonIsSelected)
+                {
+                    return seriesWidgets[index].seriesIDofButtonSeries;
+                }
+                    
+            }
+            return 0;
+        }
+
+
+        protected static void SetButtonInButtonSeriesIsPressed(int seriesID, int seriesIDofButtonSeries)
+        {
+            for (int index = seriesWidgets.Count - 1; index > -1; index--)
+            {
+                if (seriesWidgets[index].seriesID == seriesID && seriesWidgets[index].seriesIDofButtonSeries == seriesIDofButtonSeries)
+                {
+                    seriesWidgets[index].buttonIsSelected = true;
+                }
+                    
+            }
+
+        }
 
         protected override void Draw()
         {
@@ -89,6 +90,7 @@ namespace Asteroids
         {
             Raylib.DrawRectangle((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height, buttonSeriesSelectedColor);
         }
+
         public static void UpdateSeries(int idWidget, int idSeries)
         {
             Update();
@@ -97,14 +99,16 @@ namespace Asteroids
             {
                 for (int index = seriesWidgets.Count - 1; index > -1; index--)
                 {
-                    if (seriesWidgets[index].IsPressed() && seriesWidgets[index].widgetID == idWidget && seriesWidgets[index].seriesID == idSeries)
+                    if (seriesWidgets[index].IsPressed())
                     {
-                        seriesWidgets[index].buttonIsSelected = true;
-                        SetButtonInButtonSeriesIsPressed(idSeries, seriesWidgets[index].seriesIDofButtonSeries);
-                    }
-                    else
-                    {
-                        seriesWidgets[index].buttonIsSelected = false;
+                        seriesWidgets[GetButtonInButtonSeriesIsPressed(idWidget, idSeries)].buttonIsSelected = false;
+
+                        if (seriesWidgets[index].widgetID == idWidget && seriesWidgets[index].seriesID == idSeries)
+                        {
+                            seriesWidgets[index].buttonIsSelected = true;
+                            
+                            SetButtonInButtonSeriesIsPressed(idSeries, seriesWidgets[index].seriesIDofButtonSeries); 
+                        }
                     }
                 }
             }
