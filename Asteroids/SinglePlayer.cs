@@ -46,6 +46,13 @@ namespace Asteroids
 
             Button.DrawAll(3);
         }
+        public Color player1color
+        {
+            get
+            {
+                return 
+            }
+        }
 
         public bool isPlayPressed
         {
