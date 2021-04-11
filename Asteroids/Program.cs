@@ -12,6 +12,8 @@ namespace Asteroids
             settings,
             singlePlayer,
             multiPlayer,
+            singlePlayerGame,
+            multiPlayerGame,
             end
         }
         
@@ -30,7 +32,6 @@ namespace Asteroids
 
             GameState screen = GameState.title;
 
-            
 
             while (!Raylib.WindowShouldClose())
             {
@@ -54,8 +55,6 @@ namespace Asteroids
                     {
                         screen = GameState.difficulty;
                     }
-
-                    
                 }
                 else if (screen == GameState.difficulty)
                 {
@@ -67,7 +66,8 @@ namespace Asteroids
                         screen = GameState.title;
                     }
                     
-                }else if (screen == GameState.singlePlayer)
+                }
+                else if (screen == GameState.singlePlayer)
                 {
                     singlePlayer.Update();
                     singlePlayer.Draw();
@@ -76,6 +76,14 @@ namespace Asteroids
                     {
                         screen = GameState.title;
                     }
+                    else if (singlePlayer.isPlayPressed)
+                    {
+                        screen = GameState.singlePlayerGame;
+                    }
+                }
+                else if (screen == GameState.singlePlayerGame)
+                {
+                    
                 }
                 else if (screen == GameState.end)
                 {

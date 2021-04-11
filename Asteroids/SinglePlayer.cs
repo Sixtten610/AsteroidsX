@@ -47,14 +47,13 @@ namespace Asteroids
             Button.DrawAll(3);
         }
 
-
-
-
-
-
-
-
-
+        public bool isPlayPressed
+        {
+            get
+            {
+                return play.IsPressed();
+            }
+        }
         public bool isBackPressed
         {
             get
