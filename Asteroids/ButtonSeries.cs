@@ -45,33 +45,6 @@ namespace Asteroids
             seriesWidgets.Add(this);
         }
 
-        public static int GetButtonInButtonSeriesIsPressed(int widgetID, int seriesID)
-        {
-            for (int index = seriesWidgets.Count - 1; index > -1; index--)
-            {
-                if (seriesWidgets[index].widgetID == widgetID && seriesWidgets[index].seriesID == seriesID && seriesWidgets[index].buttonIsSelected)
-                {
-                    return seriesWidgets[index].seriesIDofButtonSeries;
-                }
-                    
-            }
-            return 0;
-        }
-
-
-        protected static void SetButtonInButtonSeriesIsPressed(int seriesID, int seriesIDofButtonSeries)
-        {
-            for (int index = seriesWidgets.Count - 1; index > -1; index--)
-            {
-                if (seriesWidgets[index].seriesID == seriesID && seriesWidgets[index].seriesIDofButtonSeries == seriesIDofButtonSeries)
-                {
-                    seriesWidgets[index].buttonIsSelected = true;
-                }
-                    
-            }
-
-        }
-
         protected override void Draw()
         {
             if (IfHover())
@@ -91,33 +64,52 @@ namespace Asteroids
             Raylib.DrawRectangle((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height, buttonSeriesSelectedColor);
         }
 
-        // syftet med metoden är att uppdatera vilken knapp i en knappserie som är vald
-        public static void UpdateSeries(int idWidget, int idSeries)
+        public static void UpdateSeries(int idSeries)
         {
-            Update();
-
-            // om ett klick görs av användaren körs resten av koden
-            if (Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
+            if (IsButtonPressed())
             {
-                // listan med knappar av typen Serie söks igenom
                 for (int index = seriesWidgets.Count - 1; index > -1; index--)
                 {
-                    // om knapp index i serien trycktes hämtar blocket in den tidigare neddtryckna knappen och
-                    // sätter den som icke-neddtryckt. 
-                    if (seriesWidgets[index].IsPressed())
+                    if (seriesWidgets[index].seriesID == idSeries)
                     {
-                        seriesWidgets[GetButtonInButtonSeriesIsPressed(idWidget, idSeries)].buttonIsSelected = false;
-
-                        // om widgetID och seriesID är lika med parametrarna metoden tog emot gör den denna knapp till neddtryckt.
-                        if (seriesWidgets[index].widgetID == idWidget && seriesWidgets[index].seriesID == idSeries)
-                        {
-                            seriesWidgets[index].buttonIsSelected = true;
-                            
-                            SetButtonInButtonSeriesIsPressed(idSeries, seriesWidgets[index].seriesIDofButtonSeries); 
-                        }
+                        seriesWidgets[index].buttonIsSelected = false;
                     }
                 }
+
+                for (int index = seriesWidgets.Count - 1; index > -1; index--)
+                {
+                    if (seriesWidgets[index].IsPressed() && seriesWidgets[index].seriesID == idSeries)
+                    {
+                        SetButtonInButtonSeriesIsPressed(idSeries, seriesWidgets[index].seriesIDofButtonSeries);
+                    }
+                    
+                }
             }
+            
+        }
+        protected static void SetButtonInButtonSeriesIsPressed(int seriesID, int seriesIDofButtonSeries)
+        {
+            for (int index = seriesWidgets.Count - 1; index > -1; index--)
+            {
+                if (seriesWidgets[index].seriesID == seriesID && seriesWidgets[index].seriesIDofButtonSeries == seriesIDofButtonSeries)
+                {
+                    seriesWidgets[index].buttonIsSelected = true;
+                }
+                    
+            }
+
+        }
+
+        private static bool IsButtonPressed()
+        {
+            for (int index = seriesWidgets.Count - 1; index > -1; index--)
+            {
+                if (seriesWidgets[index].IsPressed())
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         
     }
