@@ -59,6 +59,7 @@ namespace Asteroids
                 ButtonIsSelected();
             }
         }
+        
         private void ButtonIsSelected()
         {
             Raylib.DrawRectangle((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height, buttonSeriesSelectedColor);
@@ -87,6 +88,7 @@ namespace Asteroids
             }
             
         }
+
         protected static void SetButtonInButtonSeriesIsPressed(int seriesID, int seriesIDofButtonSeries)
         {
             for (int index = seriesWidgets.Count - 1; index > -1; index--)
