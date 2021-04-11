@@ -66,7 +66,7 @@ namespace Asteroids
 
         public static void UpdateSeries(int idSeries)
         {
-            if (IsButtonPressed())
+            if (IsButtonPressedOfThisID(idSeries))
             {
                 for (int index = seriesWidgets.Count - 1; index > -1; index--)
                 {
@@ -100,11 +100,11 @@ namespace Asteroids
 
         }
 
-        private static bool IsButtonPressed()
+        private static bool IsButtonPressedOfThisID(int idSeries)
         {
             for (int index = seriesWidgets.Count - 1; index > -1; index--)
             {
-                if (seriesWidgets[index].IsPressed())
+                if (seriesWidgets[index].IsPressed() && seriesWidgets[index].seriesID == idSeries)
                 {
                     return true;
                 }
