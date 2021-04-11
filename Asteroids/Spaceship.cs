@@ -15,14 +15,20 @@ namespace Asteroids
         private int xPlanePos = 500;
         private int yPlanePos = 500;
 
-        private int planeMoveSpeed = 2; 
+        // regular 2
+        protected int planeMoveSpeed = 2; 
         private double rotation = 1.565;
-        private double rotationSpeed = 0.08;
+        // regular 0,08
+        protected double rotationSpeed = 0.08;
 
         private double[] xCircle = {0, 0};
         private double[] yCircle = {0, 0};
-
-        private float spaceshipSize = 40;
+        
+        // regular 40
+        protected float spaceshipSize = 40;
+        // regular 20
+        protected int damage = 20;
+        private Color color;
 
         // LINE #############################################################
 
@@ -34,19 +40,6 @@ namespace Asteroids
 
         protected KeyboardKey[] keyInput;
 
-        public Spaceship(KeyboardKey up, KeyboardKey down, KeyboardKey left, KeyboardKey right, KeyboardKey rotateLeft, KeyboardKey rotateRight, KeyboardKey shoot)
-        {
-            keyInput = new KeyboardKey[7];
-
-            keyInput[0] = up;
-            keyInput[1] = down;
-            keyInput[2] = left;
-            keyInput[3] = right;
-            keyInput[4] = rotateLeft;
-            keyInput[5] = rotateRight;
-            keyInput[6] = shoot;
-        }
-
         static public void UpdateAll()
         {
             for (int index = spaceshipList.Count - 1; index > -1; index--)
@@ -57,6 +50,8 @@ namespace Asteroids
         private void Update()
         {
             CheckKeyInput();
+
+            color = ButtonSeries.GetSelectedColor(3);
 
             for (int i = 0; i < 3; i++)
             {
@@ -90,9 +85,7 @@ namespace Asteroids
         }
         private void Draw()
         {
-            Raylib.DrawTriangleLines(pointTriangle[0], pointTriangle[1], pointTriangle[2], Color.RED);
-
-            Raylib.DrawLineV(pointLine[0], pointLine[1], Color.MAGENTA);
+            Raylib.DrawTriangleLines(pointTriangle[0], pointTriangle[1], pointTriangle[2], color);
         }
 
         private void CheckKeyInput()

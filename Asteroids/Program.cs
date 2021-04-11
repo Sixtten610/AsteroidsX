@@ -32,6 +32,8 @@ namespace Asteroids
 
             GameState screen = GameState.title;
 
+            SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
+
 
             while (!Raylib.WindowShouldClose())
             {
@@ -83,7 +85,8 @@ namespace Asteroids
                 }
                 else if (screen == GameState.singlePlayerGame)
                 {
-                    
+                    singlePlayerGame.Update();
+                    singlePlayerGame.Draw();
                 }
                 else if (screen == GameState.end)
                 {

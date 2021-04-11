@@ -10,8 +10,8 @@ namespace Asteroids
         protected static List<ButtonSeries> seriesWidgets = new List<ButtonSeries>();
         static Color buttonSeriesSelectedColor = new Color(200,200,200, 100);
         bool buttonIsSelected = false;
-        int seriesID;
-        int seriesIDofButtonSeries;
+        protected int seriesID;
+        protected int seriesIDofButtonSeries;
 
         public ButtonSeries
         (
@@ -112,6 +112,28 @@ namespace Asteroids
                 }
             }
             return false;
+        }
+        public static int GetSelectedButtonID(int idSeries)
+        {
+            for (int index = seriesWidgets.Count - 1; index > -1; index--)
+            {
+                if (seriesWidgets[index].buttonIsSelected && seriesWidgets[index].seriesID == idSeries)
+                {
+                    return seriesWidgets[index].seriesIDofButtonSeries;
+                }
+            }
+            return 0;
+        }
+        public static Color GetSelectedColor(int idSeries)
+        {
+            for (int index = seriesWidgets.Count - 1; index > -1; index--)
+            {
+                if (seriesWidgets[index].buttonIsSelected && seriesWidgets[index].seriesID == idSeries)
+                {
+                    return seriesWidgets[index].buttonStaticColor;
+                }
+            }
+            return Color.WHITE;
         }
         
     }

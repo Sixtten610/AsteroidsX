@@ -15,11 +15,11 @@ namespace Asteroids
             RegularSpaceship regularSpaceship = new RegularSpaceship(KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
         }
 
-        protected virtual void Draw()
+        public virtual void Draw()
         {
             Spaceship.DrawAll();
         }
-        protected virtual void Update()
+        public virtual void Update()
         {
             Spaceship.UpdateAll();
         }
