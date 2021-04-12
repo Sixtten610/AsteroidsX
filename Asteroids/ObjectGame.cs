@@ -10,10 +10,14 @@ namespace Asteroids
         public virtual void Draw()
         {
             Spaceship.DrawAll();
+            Lazer.DrawAll();
+            Asteroid.DrawAll();
         }
         public virtual void Update()
         {
             Spaceship.UpdateAll();
+            Lazer.UpdateAll();
+            Asteroid.UpdateAll();
         }
     }
 }

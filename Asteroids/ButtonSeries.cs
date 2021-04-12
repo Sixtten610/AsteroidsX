@@ -9,7 +9,7 @@ namespace Asteroids
     {
         protected static List<ButtonSeries> seriesWidgets = new List<ButtonSeries>();
         static Color buttonSeriesSelectedColor = new Color(200,200,200, 100);
-        bool buttonIsSelected = false;
+        protected bool buttonIsSelected = false;
         protected int seriesID;
         protected int seriesIDofButtonSeries;
 
