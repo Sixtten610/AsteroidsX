@@ -6,6 +6,7 @@ namespace Asteroids
 {
     public class ObjectGame
     {
+        protected bool isGameOn = true;
 
         public virtual void Draw()
         {

@@ -30,7 +30,7 @@ namespace Asteroids
 
             EndScreen endScreen = new EndScreen();
 
-            GameState screen = GameState.title;
+            GameState screen = GameState.end;
 
             SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
 
@@ -88,10 +88,21 @@ namespace Asteroids
                     singlePlayerGame.CreateSinglePlayerShip();
                     singlePlayerGame.Update();
                     singlePlayerGame.Draw();
+                    
+                    if (!singlePlayerGame.ContinueGame)
+                    {
+                        screen = GameState.end;
+                    }
                 }
                 else if (screen == GameState.end)
                 {
-                    
+                    endScreen.Update();
+                    endScreen.Draw();
+
+                    if(endScreen.isMainMenuPressed)
+                    {
+                        screen = GameState.title;
+                    }
                 }
 
                 Raylib.EndDrawing();

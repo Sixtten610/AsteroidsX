@@ -11,6 +11,7 @@ namespace Asteroids
 
         // SPACESHIP #########################################################
         private Vector2[] pointTriangle = new Vector2[3];
+        private bool isAlive = true;
 
         private int xPlanePos = 500;
         private int yPlanePos = 500;
@@ -100,6 +101,8 @@ namespace Asteroids
         }
         private void Update()
         {
+            Alive();
+
             CheckKeyInput();
 
             color = ButtonSeries.GetSelectedColor(3);
@@ -203,12 +206,11 @@ namespace Asteroids
 
         private List<Asteroid> asteroidList = Asteroid.GetAsteroids;
 
-        public void Alive()
+        private void Alive()
         {
             if (Delete())
             {
-                System.Console.WriteLine("YOU DIED");
-                Console.ReadLine();
+                isAlive = false;
             }
 
         }
@@ -236,7 +238,7 @@ namespace Asteroids
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    if (Raylib.CheckCollisionPointCircle(point[i], asteroidList[index].GetCirclePos, 60))
+                    if (Raylib.CheckCollisionPointCircle(point[i], asteroidList[index].GetCirclePos, asteroidList[index].GetAsteroidHitboxSize))
                     {
                         return true;
                     }
@@ -279,6 +281,14 @@ namespace Asteroids
             get
             {
                 return damage;
+            }
+        }
+
+        public bool isSpaceshipAlive
+        {
+            get
+            {
+                return isAlive;
             }
         }
 

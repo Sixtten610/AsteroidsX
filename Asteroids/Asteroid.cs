@@ -100,7 +100,7 @@ namespace Asteroids
             for (int index = lazerList.Count - 1; index > -1; index--)
             {
                 // om skott krockar med astroid
-                if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].circlePos, 30, lazerList[index].GetRect))
+                if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].circlePos, asteroidList[asteroidIndex].GetAsteroidHitboxSize, lazerList[index].GetRect))
                 {
                     // - skott dmg && ta bort skott && + score för spaceship
                     asteroidList[asteroidIndex].hp -= lazerList[index].GetDamage; 
@@ -128,7 +128,7 @@ namespace Asteroids
         {
             Raylib.DrawRectanglePro(rectangle, centerOfRect, randDegree, asteroidColor);
 
-            Raylib.DrawText(this.hp.ToString(), (int)circlePos.X - 20, (int)circlePos.Y - 10, 28, Color.LIME);
+            Raylib.DrawText(this.hp.ToString(), (int)circlePos.X - 20, (int)circlePos.Y - 10, 28, Color.BLACK);
         }
 
 
@@ -169,6 +169,13 @@ namespace Asteroids
             get
             {
                 return circlePos;
+            }
+        }
+        public float GetAsteroidHitboxSize
+        {
+            get
+            {
+                return rectangle.width/2;
             }
         }
     }

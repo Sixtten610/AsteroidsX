@@ -45,7 +45,11 @@ namespace Asteroids
             
             if (createdSpaceShip == 0)
                 {
-                    if (regularSpaceship.Shoot())
+                    if (!regularSpaceship.isSpaceshipAlive)
+                    {
+                        this.isGameOn = false;
+                    }
+                    else if (regularSpaceship.Shoot())
                     {
                         Lazer lazer = new Lazer
                         (
@@ -56,7 +60,11 @@ namespace Asteroids
                 }
                 else if (createdSpaceShip == 2)
                 {
-                    if (heavySpaceship.Shoot())
+                    if (!heavySpaceship.isSpaceshipAlive)
+                    {
+                        this.isGameOn = false;
+                    }
+                    else if (heavySpaceship.Shoot())
                     {
                         Lazer lazer = new Lazer
                         (
@@ -82,6 +90,14 @@ namespace Asteroids
         {
             base.Draw();
             userInterface.DrawUI();
+        }
+
+        public bool ContinueGame
+        {
+            get
+            {
+                return isGameOn;
+            }
         }
     }
 }
