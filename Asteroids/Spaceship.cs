@@ -150,7 +150,7 @@ namespace Asteroids
             }
         }
 
-        //private List<Asteroid2> asteroidList = Asteroid2.GetAsteroids;
+        private List<Asteroid> asteroidList = Asteroid.GetAsteroids;
 
         public void Alive()
         {
@@ -181,16 +181,16 @@ namespace Asteroids
                                
             }
             
-            // for (int index = asteroidList.Count - 1; index > 0; index--)
-            // {
-            //     for (int i = 0; i < 3; i++)
-            //     {
-            //         if (Raylib.CheckCollisionPointCircle(point[i], asteroidList[index].GetCirclePos, 60))
-            //         {
-            //             return true;
-            //         }
-            //     }
-            // }            
+            for (int index = asteroidList.Count - 1; index > 0; index--)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (Raylib.CheckCollisionPointCircle(point[i], asteroidList[index].GetCirclePos, 60))
+                    {
+                        return true;
+                    }
+                }
+            }            
 
             return false;
         }
