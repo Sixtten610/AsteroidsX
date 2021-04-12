@@ -7,6 +7,7 @@ namespace Asteroids
     public class SinglePlayerGame : ObjectGame
     {
         RegularSpaceship regularSpaceship;
+        UserInterface userInterface = new UserInterface();
         private int time = 0;
 
 
@@ -17,6 +18,7 @@ namespace Asteroids
 
         public override void Update()
         {
+            userInterface.UpdateUI();
 
             if (regularSpaceship.Shoot())
             {
@@ -39,6 +41,11 @@ namespace Asteroids
             System.Console.WriteLine(regularSpaceship.GetScore);
             
             base.Update();
+        }
+        public override void Draw()
+        {
+            base.Draw();
+            userInterface.DrawUI();
         }
     }
 }
