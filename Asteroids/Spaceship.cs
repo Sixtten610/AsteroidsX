@@ -49,6 +49,7 @@ namespace Asteroids
             this.spaceshipID = ID;
         }
 
+
         public int GetID
         {
             get
