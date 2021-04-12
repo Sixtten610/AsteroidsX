@@ -8,7 +8,7 @@ namespace Asteroids
     
     public class RegularSpaceship : Spaceship
     {
-        public RegularSpaceship(KeyboardKey up, KeyboardKey down, KeyboardKey left, KeyboardKey right, KeyboardKey rotateLeft, KeyboardKey rotateRight, KeyboardKey shoot)
+        public RegularSpaceship(int id, KeyboardKey up, KeyboardKey down, KeyboardKey left, KeyboardKey right, KeyboardKey rotateLeft, KeyboardKey rotateRight, KeyboardKey shoot) : base(id)
         {
             keyInput = new KeyboardKey[7];
 
@@ -19,6 +19,8 @@ namespace Asteroids
             keyInput[4] = rotateLeft;
             keyInput[5] = rotateRight;
             keyInput[6] = shoot;
+
+            System.Console.WriteLine("SpaceshipID: " + this.spaceshipID);
 
             spaceshipList.Add(this);
         }

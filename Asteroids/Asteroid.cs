@@ -38,7 +38,7 @@ namespace Asteroids
         
         protected virtual void AsteroidSettings()
         {
-            rectangle.width = rectangle.height = 100;
+            rectangle.width = rectangle.height = 50;
 
             centerOfRect = new Vector2(rectangle.width/2, rectangle.width/2);
 
@@ -102,8 +102,9 @@ namespace Asteroids
                 // om skott krockar med astroid
                 if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].circlePos, 60, lazerList[index].GetRect))
                 {
-                    // - skott dmg && ta bort skott
+                    // - skott dmg && ta bort skott && + score för spaceship
                     asteroidList[asteroidIndex].hp -= lazerList[index].GetDamage; 
+                    Spaceship.AddToScore(lazerList[index].GetID, lazerList[index].GetDamage);
                     Lazer.RemoceInstanceOfLine(index);
 
                     // om hp efter -dmg >=0 ta bort astroid också
@@ -140,7 +141,7 @@ namespace Asteroids
             return false;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             asteroidMoveSpeed -= 1;
 

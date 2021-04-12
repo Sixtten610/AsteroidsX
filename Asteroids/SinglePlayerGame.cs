@@ -12,7 +12,7 @@ namespace Asteroids
 
         public SinglePlayerGame()
         {
-            regularSpaceship = new RegularSpaceship(KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
+            regularSpaceship = new RegularSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
         }
 
         public override void Update()
@@ -23,7 +23,7 @@ namespace Asteroids
                 Lazer lazer = new Lazer
                 (
                     regularSpaceship.TriangleX, regularSpaceship.TriangleY, 
-                    regularSpaceship.TriangleV, regularSpaceship.TriangleR
+                    regularSpaceship.TriangleV, regularSpaceship.TriangleR, regularSpaceship.Damage, regularSpaceship.GetID
                 );
             }
 
@@ -36,6 +36,7 @@ namespace Asteroids
             {
                 time++;
             }
+            System.Console.WriteLine(regularSpaceship.GetScore);
             
             base.Update();
         }

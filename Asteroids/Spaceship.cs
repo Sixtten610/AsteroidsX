@@ -27,8 +27,12 @@ namespace Asteroids
         // regular 40
         protected float spaceshipSize = 40;
         // regular 20
-        protected int damage = 20;
+        protected int damage = 100;
         private Color color;
+
+
+        protected int spaceshipID;
+        protected int score = 0;
 
         // LINE #############################################################
 
@@ -39,6 +43,41 @@ namespace Asteroids
         // KEY INPUTS ########################################################
 
         protected KeyboardKey[] keyInput;
+
+        public Spaceship(int ID)
+        {
+            this.spaceshipID = ID;
+        }
+
+        public int GetID
+        {
+            get
+            {
+                return spaceshipID;
+            }
+        }
+        public int GetScore
+        {
+            get
+            {
+                return score;
+            }
+        }
+        
+        public static void AddToScore(int id, int score)
+        {
+            for (int index = spaceshipList.Count - 1; index > -1; index--)
+            {
+                if(spaceshipList[index].GetID == id)
+                {
+                    spaceshipList[index].AddScore(score);
+                }
+            }
+        }
+        private void AddScore(int score)
+        {
+            this.score += score;
+        }
 
         static public void UpdateAll()
         {
@@ -221,6 +260,13 @@ namespace Asteroids
             get
             {
                 return TriangleRot();
+            }
+        }
+        public int Damage
+        {
+            get
+            {
+                return damage;
             }
         }
 

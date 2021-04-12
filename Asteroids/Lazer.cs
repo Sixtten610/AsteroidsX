@@ -20,8 +20,10 @@ namespace Asteroids
         protected double asteroidSpeed = 1;
 
         protected int damage = 100;
+        protected Color color;
+        protected int lazerID;
 
-        public Lazer(int xI, int yI, double vI, double rI)
+        public Lazer(int xI, int yI, double vI, double rI, int damage, int id)
         {
             OriginX = xI;
             OriginY = yI;
@@ -33,11 +35,24 @@ namespace Asteroids
             rect.width = 7;
             rect.height = 1;
 
+            this.damage = damage;
+            this.lazerID = id;
+            System.Console.WriteLine("LazerID: " + this.lazerID);
+
             lazerList.Add(this);
+        }
+        public int GetID
+        {
+            get
+            {
+                return lazerID;
+            }
         }
 
         private void Update()
         {
+            color = ButtonSeries.GetSelectedColor(3);
+
             asteroidSpeed -= 15;
 
             x = ((Math.Cos(v) * asteroidSpeed) + OriginX);
@@ -48,7 +63,7 @@ namespace Asteroids
         }
         private void Draw()
         {
-            Raylib.DrawRectanglePro(rect, rectCenterPointVector, ToFloat(r), Color.ORANGE);
+            Raylib.DrawRectanglePro(rect, rectCenterPointVector, ToFloat(r), color);
         }
 
         private bool Delete()
