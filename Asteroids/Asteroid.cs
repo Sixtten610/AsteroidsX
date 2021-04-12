@@ -100,7 +100,7 @@ namespace Asteroids
             for (int index = lazerList.Count - 1; index > -1; index--)
             {
                 // om skott krockar med astroid
-                if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].circlePos, 60, lazerList[index].GetRect))
+                if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].circlePos, 30, lazerList[index].GetRect))
                 {
                     // - skott dmg && ta bort skott && + score för spaceship
                     asteroidList[asteroidIndex].hp -= lazerList[index].GetDamage; 

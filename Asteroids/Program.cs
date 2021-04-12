@@ -85,6 +85,7 @@ namespace Asteroids
                 }
                 else if (screen == GameState.singlePlayerGame)
                 {
+                    singlePlayerGame.CreateSinglePlayerShip();
                     singlePlayerGame.Update();
                     singlePlayerGame.Draw();
                 }

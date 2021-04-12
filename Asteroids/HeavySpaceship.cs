@@ -3,10 +3,9 @@ using Raylib_cs;
 
 namespace Asteroids
 {
-    
-    public class RegularSpaceship : Spaceship
+    public class HeavySpaceship : Spaceship
     {
-        public RegularSpaceship(int id, KeyboardKey up, KeyboardKey down, KeyboardKey left, KeyboardKey right, KeyboardKey rotateLeft, KeyboardKey rotateRight, KeyboardKey shoot) : base(id)
+        public HeavySpaceship(int id, KeyboardKey up, KeyboardKey down, KeyboardKey left, KeyboardKey right, KeyboardKey rotateLeft, KeyboardKey rotateRight, KeyboardKey shoot) : base(id)
         {
             keyInput = new KeyboardKey[7];
 
@@ -17,6 +16,11 @@ namespace Asteroids
             keyInput[4] = rotateLeft;
             keyInput[5] = rotateRight;
             keyInput[6] = shoot;
+
+            this.spaceshipSize = 60;
+            this.rotationSpeed = 0.04;
+            this.damage = 200;
+            this.planeMoveSpeed = 1;
 
             spaceshipList.Add(this);
         }
