@@ -30,7 +30,7 @@ namespace Asteroids
 
             EndScreen endScreen = new EndScreen();
 
-            GameState screen = GameState.end;
+            GameState screen = GameState.title;
 
             SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
 

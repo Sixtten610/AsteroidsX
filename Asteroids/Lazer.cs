@@ -37,7 +37,6 @@ namespace Asteroids
 
             this.damage = damage;
             this.lazerID = id;
-            System.Console.WriteLine("LazerID: " + this.lazerID);
 
             lazerList.Add(this);
         }
@@ -93,7 +92,7 @@ namespace Asteroids
             }
         }
 
-        public static List<Lazer> GetLines
+        public static List<Lazer> GetLazer
         {
             get
             {

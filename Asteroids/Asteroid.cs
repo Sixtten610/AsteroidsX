@@ -11,15 +11,15 @@ namespace Asteroids
 
         protected Rectangle rectangle = new Rectangle();
 
-        Vector2 centerOfRect;
+        protected Vector2 centerOfRect;
         static Random generator = new Random();
 
         float randDegree = generator.Next(0, 360);
-        float OriginX;
-        float OriginY;
+        protected float OriginX;
+        protected float OriginY;
         
-        double x;
-        double y;
+        protected double x;
+        protected double y;
         protected double asteroidMoveSpeed;
         protected int hp;
 
@@ -44,7 +44,7 @@ namespace Asteroids
 
             asteroidColor = Color.WHITE;
 
-            asteroidMoveSpeed = 10;
+            asteroidMoveSpeed = 1;
 
             hp = 100;
         }
@@ -94,7 +94,7 @@ namespace Asteroids
             }
         }
 
-        private List<Lazer> lazerList = Lazer.GetLines;
+        private List<Lazer> lazerList = Lazer.GetLazer;
         private void CollisionWithLine(int asteroidIndex)
         {
             for (int index = lazerList.Count - 1; index > -1; index--)
@@ -102,6 +102,7 @@ namespace Asteroids
                 // om skott krockar med astroid
                 if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].circlePos, asteroidList[asteroidIndex].GetAsteroidHitboxSize, lazerList[index].GetRect))
                 {
+                    
                     // - skott dmg && ta bort skott && + score för spaceship
                     asteroidList[asteroidIndex].hp -= lazerList[index].GetDamage; 
                     Spaceship.AddToScore(lazerList[index].GetID, lazerList[index].GetDamage);
@@ -175,7 +176,7 @@ namespace Asteroids
         {
             get
             {
-                return rectangle.width/2;
+                return rectangle.width;
             }
         }
     }

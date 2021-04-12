@@ -220,7 +220,6 @@ namespace Asteroids
 
             for (int index = 0; index < 3; index++)
             {
-                System.Console.WriteLine(index);
                 if (index == 0)
                 {
                     point[index].X = xPlanePos;
@@ -289,6 +288,29 @@ namespace Asteroids
             get
             {
                 return isAlive;
+            }
+        }
+        
+        static public List<Spaceship> GetSpaceshipList
+        {
+            get
+            {
+                return spaceshipList;
+            }
+        }
+
+        public int GetSpaceshipX
+        {
+            get
+            {
+                return xPlanePos;
+            }
+        }
+        public int GetSpaceshipY
+        {
+            get
+            {
+                return yPlanePos;
             }
         }
 

@@ -10,6 +10,7 @@ namespace Asteroids
         HeavySpaceship heavySpaceship;
         UserInterface userInterface = new UserInterface();
         private int time = 0;
+        private int time1 = 0;
         int createdSpaceShip;
 
 
@@ -83,6 +84,21 @@ namespace Asteroids
             {
                 time++;
             }
+
+            // if (Spaceship.GetSpaceshipScore(1) > 200)
+            // {
+            //     //SeekingAsteroid.UpdateAll();
+
+            //     if (time1 == 600)
+            //     {
+            //         SeekingAsteroid seekingAsteroid = new SeekingAsteroid();
+            //         time1 = 0;
+            //     }
+            //     else
+            //     {
+            //         time1++;
+            //     }
+            // }
             
             base.Update();
         }
@@ -90,6 +106,7 @@ namespace Asteroids
         {
             base.Draw();
             userInterface.DrawUI();
+            //SeekingAsteroid.DrawAll();
         }
 
         public bool ContinueGame
