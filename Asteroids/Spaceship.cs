@@ -57,7 +57,18 @@ namespace Asteroids
                 return spaceshipID;
             }
         }
-        public int GetScore
+        public static int GetSpaceshipScore(int id)
+        {
+            for (int index = spaceshipList.Count - 1; index > -1; index--)
+            {
+                if(spaceshipList[index].GetID == id)
+                {
+                    return spaceshipList[index].GetShipScore;
+                }
+            }
+            return 0;
+        }
+        private int GetShipScore
         {
             get
             {

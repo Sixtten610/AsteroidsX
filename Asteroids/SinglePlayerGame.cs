@@ -38,7 +38,6 @@ namespace Asteroids
             {
                 time++;
             }
-            System.Console.WriteLine(regularSpaceship.GetScore);
             
             base.Update();
         }
