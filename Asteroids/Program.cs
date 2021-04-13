@@ -30,6 +30,8 @@ namespace Asteroids
 
             SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
 
+            MultiPlayer multiPlayer = new MultiPlayer();
+
             EndScreen endScreen = new EndScreen();
 
             GameState screen = GameState.title;
@@ -99,6 +101,20 @@ namespace Asteroids
                     if (!singlePlayerGame.ContinueGame)
                     {
                         screen = GameState.end;
+                    }
+                }
+                else if (screen == GameState.multiPlayer)
+                {
+                    multiPlayer.Update();
+                    multiPlayer.Draw();
+
+                    if (multiPlayer.isBackPressed)
+                    {
+                        screen = GameState.title;
+                    }
+                    else if (multiPlayer.isPlayPressed)
+                    {
+                        screen = GameState.multiPlayerGame;
                     }
                 }
                 else if (screen == GameState.end)

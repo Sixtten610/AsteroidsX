@@ -8,6 +8,7 @@ namespace Asteroids
     {
         RegularSpaceship regularSpaceship;
         HeavySpaceship heavySpaceship;
+        ScoutSpaceship scoutSpaceship;
         UserInterface userInterface = new UserInterface();
         private int time = 0;
         private int time1 = 0;
@@ -26,6 +27,10 @@ namespace Asteroids
             {
                 createdSpaceShip = 2;
             }
+            else if (ButtonSeries.GetSelectedButtonID(1) == 1)
+            {
+                createdSpaceShip = 1;
+            }
 
             if (createSinglePlayerShip)
             {
@@ -36,6 +41,10 @@ namespace Asteroids
                 else if (ButtonSeries.GetSelectedButtonID(1) == 2)
                 {
                     heavySpaceship = new HeavySpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
+                }
+                else if (ButtonSeries.GetSelectedButtonID(1) == 1)
+                {
+                    scoutSpaceship = new ScoutSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
                 }
                 createSinglePlayerShip = false;
             }
@@ -72,6 +81,21 @@ namespace Asteroids
                         (
                             heavySpaceship.TriangleX, heavySpaceship.TriangleY, 
                             heavySpaceship.TriangleV, heavySpaceship.TriangleR, heavySpaceship.Damage, heavySpaceship.GetID
+                        );
+                    }
+                }
+                else if (createdSpaceShip == 1)
+                {
+                    if (!scoutSpaceship.isSpaceshipAlive)
+                    {
+                        this.isGameOn = false;
+                    }
+                    else if (scoutSpaceship.Shoot())
+                    {
+                        Lazer lazer = new Lazer
+                        (
+                            scoutSpaceship.TriangleX, scoutSpaceship.TriangleY, 
+                            scoutSpaceship.TriangleV, scoutSpaceship.TriangleR, scoutSpaceship.Damage, scoutSpaceship.GetID
                         );
                     }
                 }

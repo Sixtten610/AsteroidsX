@@ -192,7 +192,7 @@ namespace Asteroids
             yLine[1] = Math.Sin(rotation);
         }
 
-        public bool Shoot()
+        public virtual bool Shoot()
         {
             if (Raylib.IsKeyPressed(keyInput[6]))
             {
