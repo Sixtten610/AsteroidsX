@@ -12,11 +12,12 @@ namespace Asteroids
         protected bool buttonIsSelected = false;
         protected int seriesID;
         protected int seriesIDofButtonSeries;
+        protected float multiplier;
 
         public ButtonSeries
         (
             int height, int width, int textSize, Color textColor, Color buttonStaticColor, Color buttonHighlightColor, 
-            int xPos, int yPos, string caption, int textMarginX, int textMarginY, int widgetID, int seriesID, int seriesIDofButtonSeries
+            int xPos, int yPos, string caption, int textMarginX, int textMarginY, int widgetID, int seriesID, int seriesIDofButtonSeries, float multiplier
         )
         {
             // HITBOX
@@ -34,6 +35,7 @@ namespace Asteroids
             this.caption = caption;
             this.textMarginX = textMarginX;
             this.textMarginY = textMarginY;
+            this.multiplier = multiplier;
 
             // BUTTON TAGS
             this.widgetID = widgetID;
@@ -134,6 +136,21 @@ namespace Asteroids
                 }
             }
             return Color.WHITE;
+        }
+        public static float GetSelectedMultiplier(int idSeries)
+        {
+            for (int index = seriesWidgets.Count - 1; index > -1; index--)
+            {
+                if (seriesWidgets[index].buttonIsSelected && seriesWidgets[index].seriesID == idSeries)
+                {
+                    return seriesWidgets[index].ButtonSeriesMultiplier();
+                }
+            }
+            return 1;
+        }
+        protected virtual float ButtonSeriesMultiplier()
+        {
+            return multiplier;
         }
         
     }

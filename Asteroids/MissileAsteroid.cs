@@ -18,7 +18,7 @@ namespace Asteroids
 
             asteroidColor = Color.DARKGRAY;
 
-            asteroidMoveSpeed = 0.6;
+            asteroidMoveSpeed = 1 * ButtonSeries.GetSelectedMultiplier(2);
 
             hp = 200;
 
@@ -29,6 +29,7 @@ namespace Asteroids
         protected List<Spaceship> spaceshipList = Spaceship.GetSpaceshipList;
         protected override void Update()
         {
+            System.Console.WriteLine(asteroidMoveSpeed);
             for (int index = spaceshipList.Count - 1; index > -1; index--)
             {
                 if (followShip == index)
