@@ -7,14 +7,14 @@ namespace Asteroids
 {
     public class Asteroid
     {
-        protected static List<Asteroid> asteroidList = new List<Asteroid>();
+        private static List<Asteroid> asteroidList = new List<Asteroid>();
 
         protected Rectangle rectangle = new Rectangle();
 
         protected Vector2 centerOfRect;
         static Random generator = new Random();
 
-        float randDegree = generator.Next(0, 360);
+        protected float randDegree = generator.Next(0, 360);
         protected float OriginX;
         protected float OriginY;
         
@@ -23,20 +23,11 @@ namespace Asteroids
         protected double asteroidMoveSpeed;
         protected int hp;
 
-        Vector2 circlePos;
+        protected Vector2 circlePos;
         protected Color asteroidColor;
 
 
         public Asteroid()
-        {
-            AsteroidSettings();
-            
-            SpawnLocation();
-
-            asteroidList.Add(this);
-        }
-        
-        protected virtual void AsteroidSettings()
         {
             rectangle.width = rectangle.height = 50;
 
@@ -47,6 +38,10 @@ namespace Asteroids
             asteroidMoveSpeed = 1;
 
             hp = 100;
+            
+            SpawnLocation();
+
+            asteroidList.Add(this);
         }
         private void SpawnLocation()
         {
@@ -94,8 +89,8 @@ namespace Asteroids
             }
         }
 
-        private List<Lazer> lazerList = Lazer.GetLazer;
-        private void CollisionWithLine(int asteroidIndex)
+        protected List<Lazer> lazerList = Lazer.GetLazer;
+        protected virtual void CollisionWithLine(int asteroidIndex)
         {
             for (int index = lazerList.Count - 1; index > -1; index--)
             {

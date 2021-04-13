@@ -12,6 +12,7 @@ namespace Asteroids
         private int time = 0;
         private int time1 = 0;
         int createdSpaceShip;
+        int wave = 1;
 
 
         private bool createSinglePlayerShip = true;
@@ -85,28 +86,29 @@ namespace Asteroids
                 time++;
             }
 
-            // if (Spaceship.GetSpaceshipScore(1) > 200)
-            // {
-            //     //SeekingAsteroid.UpdateAll();
+            if (Spaceship.GetSpaceshipScore(1) > 3000)
+            {
+                wave = 2;
 
-            //     if (time1 == 600)
-            //     {
-            //         SeekingAsteroid seekingAsteroid = new SeekingAsteroid();
-            //         time1 = 0;
-            //     }
-            //     else
-            //     {
-            //         time1++;
-            //     }
-            // }
+                if (time1 == 600)
+                {
+                    MissileAsteroid missileAsteroid = new MissileAsteroid();
+                    time1 = 0;
+                }
+                else
+                {
+                    time1++;
+                }
+            }
             
             base.Update();
         }
         public override void Draw()
         {
+            Raylib.DrawText("WAVE:", 450, 30, 35, Color.WHITE);
+            Raylib.DrawText(wave.ToString(), 580, 30, 35, Color.WHITE);
             base.Draw();
             userInterface.DrawUI();
-            //SeekingAsteroid.DrawAll();
         }
 
         public bool ContinueGame

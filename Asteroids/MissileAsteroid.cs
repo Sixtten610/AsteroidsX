@@ -1,30 +1,31 @@
-using System.Collections.Generic;
 using System;
 using Raylib_cs;
 using System.Numerics;
+using System.Collections.Generic;
 
 namespace Asteroids
 {
-    public class SeekingAsteroid : Asteroid
+    public class MissileAsteroid : Asteroid
     {
         protected static Random random = new Random();
-        protected float speed;
         int followShip;
-        protected override void AsteroidSettings()
+
+        public MissileAsteroid()
         {
-            
             rectangle.width = rectangle.height = 70;
 
             centerOfRect = new Vector2(rectangle.width/2, rectangle.width/2);
 
-            asteroidColor = Color.GRAY;
+            asteroidColor = Color.DARKGRAY;
+
+            asteroidMoveSpeed = 0.6;
 
             hp = 200;
 
-            speed = 1;
-
             followShip = random.Next(0, spaceshipList.Count);
+
         }
+
         protected List<Spaceship> spaceshipList = Spaceship.GetSpaceshipList;
         protected override void Update()
         {
@@ -32,34 +33,41 @@ namespace Asteroids
             {
                 if (followShip == index)
                 {
-                    System.Console.WriteLine("OriginX " + OriginX);
-                    System.Console.WriteLine("OriginY " + OriginY);
 
                     if (OriginX > spaceshipList[index].GetSpaceshipX)
                     {
-                        OriginX -= speed;
+                        OriginX -= (float)asteroidMoveSpeed;
                     }
                     else if (OriginX < spaceshipList[index].GetSpaceshipX)
                     {
-                        OriginX += speed;
+                        OriginX += (float)asteroidMoveSpeed;
                     }
 
                     if (OriginY > spaceshipList[index].GetSpaceshipY)
                     {
-                        OriginY -= speed;
+                        OriginY -= (float)asteroidMoveSpeed;
                     }
                     else if (OriginY < spaceshipList[index].GetSpaceshipY)
                     {
-                        OriginY += speed;
+                        OriginY += (float)asteroidMoveSpeed;
                     }
 
                     rectangle.x = OriginX;
                     this.x = OriginX;
                     rectangle.y = OriginY;
                     this.y = OriginY;
+                    circlePos = new Vector2((float)x,(float)y);
 
                 }
+                
             }
+        }
+
+        protected override void Draw()
+        {
+            Raylib.DrawRectanglePro(rectangle, centerOfRect, randDegree, asteroidColor);
+
+            Raylib.DrawText(this.hp.ToString(), (int)circlePos.X - 20, (int)circlePos.Y - 10, 28, Color.BLACK);
         }
     }
 }
