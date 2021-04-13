@@ -28,15 +28,22 @@ namespace Asteroids
 
             SinglePlayer singlePlayer = new SinglePlayer();
 
+            SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
+
             EndScreen endScreen = new EndScreen();
 
             GameState screen = GameState.title;
 
-            SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
-
+            bool restartGames = true;
 
             while (!Raylib.WindowShouldClose())
             {
+                if (restartGames)
+                {
+                    singlePlayerGame = new SinglePlayerGame();
+                    restartGames = false;
+                }
+
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.BLACK);
 
@@ -102,6 +109,7 @@ namespace Asteroids
                     if(endScreen.isMainMenuPressed)
                     {
                         screen = GameState.title;
+                        restartGames = true;
                     }
                 }
 

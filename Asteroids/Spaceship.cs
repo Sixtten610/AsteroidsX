@@ -210,6 +210,7 @@ namespace Asteroids
         {
             if (Delete())
             {
+                spaceshipList.Remove(this);
                 isAlive = false;
             }
 
