@@ -8,6 +8,13 @@ namespace Asteroids
     {
         protected bool isGameOn = true;
 
+        public static void Clear()
+        {
+            Lazer.LazerList.Clear();
+            Asteroid.AsteroidList.Clear();
+            Spaceship.SpaceshipList.Clear();
+        }
+
         public virtual void Draw()
         {
             Spaceship.DrawAll();

@@ -26,10 +26,9 @@ namespace Asteroids
 
         }
 
-        protected List<Spaceship> spaceshipList = Spaceship.GetSpaceshipList;
+        protected List<Spaceship> spaceshipList = Spaceship.SpaceshipList;
         protected override void Update()
         {
-            System.Console.WriteLine(asteroidMoveSpeed);
             for (int index = spaceshipList.Count - 1; index > -1; index--)
             {
                 if (followShip == index)

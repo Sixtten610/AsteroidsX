@@ -17,7 +17,7 @@ namespace Asteroids
         private double y;
         private double v;
         private double r;
-        protected double asteroidSpeed = 1;
+        protected double lazerSpeed = 1;
 
         protected int damage = 100;
         protected Color color;
@@ -52,10 +52,10 @@ namespace Asteroids
         {
             color = ButtonSeries.GetSelectedColor(3);
 
-            asteroidSpeed -= 15;
+            lazerSpeed -= 15;
 
-            x = ((Math.Cos(v) * asteroidSpeed) + OriginX);
-            y = ((Math.Sin(v) * asteroidSpeed) + OriginY);
+            x = ((Math.Cos(v) * lazerSpeed) + OriginX);
+            y = ((Math.Sin(v) * lazerSpeed) + OriginY);
 
             rect.x = ToFloat(x);
             rect.y = ToFloat(y);  
@@ -92,12 +92,16 @@ namespace Asteroids
             }
         }
 
-        public static List<Lazer> GetLazer
+        public static List<Lazer> LazerList
         {
             get
             {
                 return lazerList;
             }
+            // set
+            // {
+            //     lazerList.Clear();
+            // }
         }
         public Rectangle GetRect
         {

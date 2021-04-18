@@ -36,12 +36,13 @@ namespace Asteroids
 
             GameState screen = GameState.title;
 
-            bool restartGames = true;
+            bool restartGames = false;
 
             while (!Raylib.WindowShouldClose())
             {
                 if (restartGames)
                 {
+                    ObjectGame.Clear();
                     singlePlayerGame = new SinglePlayerGame();
                     restartGames = false;
                 }

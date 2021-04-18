@@ -204,7 +204,7 @@ namespace Asteroids
             }
         }
 
-        private List<Asteroid> asteroidList = Asteroid.GetAsteroids;
+        private List<Asteroid> asteroidList = Asteroid.AsteroidList;
 
         private void Alive()
         {
@@ -292,7 +292,7 @@ namespace Asteroids
             }
         }
         
-        static public List<Spaceship> GetSpaceshipList
+        static public List<Spaceship> SpaceshipList
         {
             get
             {

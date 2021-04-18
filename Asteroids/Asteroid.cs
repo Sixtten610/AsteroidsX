@@ -89,7 +89,7 @@ namespace Asteroids
             }
         }
 
-        protected List<Lazer> lazerList = Lazer.GetLazer;
+        protected List<Lazer> lazerList = Lazer.LazerList;
         protected virtual void CollisionWithLine(int asteroidIndex)
         {
             for (int index = lazerList.Count - 1; index > -1; index--)
@@ -153,12 +153,16 @@ namespace Asteroids
 
 
 
-        public static List<Asteroid> GetAsteroids
+        public static List<Asteroid> AsteroidList
         {
             get
             {
                 return asteroidList;
             }
+            // set
+            // {
+            //     AsteroidList.Clear();
+            // }
         }
 
         public Vector2 GetCirclePos

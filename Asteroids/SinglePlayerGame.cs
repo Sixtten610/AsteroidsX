@@ -99,8 +99,8 @@ namespace Asteroids
                         );
                     }
                 }
-
-            if (time == 10)
+            System.Console.WriteLine(10 * (4 - ButtonSeries.GetSelectedMultiplier(2)));
+            if (time >= 10 * (4 - ButtonSeries.GetSelectedMultiplier(2)))
             {
                 Asteroid asteroid = new Asteroid();
                 time = 0;

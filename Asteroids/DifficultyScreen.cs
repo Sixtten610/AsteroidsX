@@ -9,10 +9,10 @@ namespace Asteroids
         // BUTTONS ###########################################
 
         // single player
-        ButtonSeries easy = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 400, "EASY", 16, 6, 2, 2, 0, 0.6f);
-        ButtonSeries medium = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 450, "MEDIUM", 16, 6, 2, 2, 1, 0.9f);
-        ButtonSeries hard = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 500, "HARD", 16, 6, 2, 2, 2, 1.2f);
-        ButtonSeries impossible = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 550, "IMPOSSIBLE", 16, 6, 2, 2, 3, 1.5f);
+        ButtonSeries easy = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 400, "EASY", 16, 6, 2, 2, 0, 1f);
+        ButtonSeries medium = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 450, "MEDIUM", 16, 6, 2, 2, 1, 1.5f);
+        ButtonSeries hard = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 500, "HARD", 16, 6, 2, 2, 2, 2f);
+        ButtonSeries impossible = new ButtonSeries(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 550, "IMPOSSIBLE", 16, 6, 2, 2, 3, 3f);
         Button back = new ButtonSingle(45, 120, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 50, 850, "BACK", 13, 6, 2);
 
 

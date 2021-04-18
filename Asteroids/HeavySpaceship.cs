@@ -18,10 +18,10 @@ namespace Asteroids
             keyInput[6] = shoot;
 
             this.spaceshipSize = 60;
-            this.rotationSpeed = 0.04;
+            this.rotationSpeed = 0.03;
             this.damage = 200;
             this.planeMoveSpeed = 1;
-
+            
             spaceshipList.Add(this);
         }
     }
