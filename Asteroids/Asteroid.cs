@@ -122,7 +122,6 @@ namespace Asteroids
 
         protected virtual void Draw()
         {
-
             Raylib.DrawRectanglePro(rectangle, centerOfRect, randDegree, asteroidColor);
 
             Raylib.DrawText(this.hp.ToString(), (int)circlePos.X - 20, (int)circlePos.Y - 10, 28, Color.BLACK);
@@ -159,10 +158,6 @@ namespace Asteroids
             {
                 return asteroidList;
             }
-            // set
-            // {
-            //     AsteroidList.Clear();
-            // }
         }
 
         public Vector2 GetCirclePos

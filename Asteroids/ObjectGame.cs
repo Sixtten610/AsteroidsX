@@ -4,7 +4,7 @@ using Raylib_cs;
 
 namespace Asteroids
 {
-    public class ObjectGame
+    public class ObjectGame : ObjectScreen
     {
         protected bool isGameOn = true;
 
@@ -15,13 +15,13 @@ namespace Asteroids
             Spaceship.SpaceshipList.Clear();
         }
 
-        public virtual void Draw()
+        public override void Draw()
         {
             Spaceship.DrawAll();
             Lazer.DrawAll();
             Asteroid.DrawAll();
         }
-        public virtual void Update()
+        public override void Update()
         {
             Spaceship.UpdateAll();
             Lazer.UpdateAll();

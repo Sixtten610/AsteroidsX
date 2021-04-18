@@ -98,10 +98,6 @@ namespace Asteroids
             {
                 return lazerList;
             }
-            // set
-            // {
-            //     lazerList.Clear();
-            // }
         }
         public Rectangle GetRect
         {

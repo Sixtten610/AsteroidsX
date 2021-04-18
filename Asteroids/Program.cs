@@ -40,13 +40,6 @@ namespace Asteroids
 
             while (!Raylib.WindowShouldClose())
             {
-                if (restartGames)
-                {
-                    ObjectGame.Clear();
-                    singlePlayerGame = new SinglePlayerGame();
-                    restartGames = false;
-                }
-
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.BLACK);
 
@@ -128,6 +121,13 @@ namespace Asteroids
                         screen = GameState.title;
                         restartGames = true;
                     }
+                }
+
+                if (restartGames)
+                {
+                    ObjectGame.Clear();
+                    singlePlayerGame = new SinglePlayerGame();
+                    restartGames = false;
                 }
 
                 Raylib.EndDrawing();

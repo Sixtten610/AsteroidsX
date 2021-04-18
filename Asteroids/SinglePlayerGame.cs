@@ -10,6 +10,7 @@ namespace Asteroids
         HeavySpaceship heavySpaceship;
         ScoutSpaceship scoutSpaceship;
         UserInterface userInterface = new UserInterface();
+        private int spaceShipScore;
         private int time = 0;
         private int time1 = 0;
         int createdSpaceShip;
@@ -53,53 +54,54 @@ namespace Asteroids
         public override void Update()
         {
             userInterface.UpdateUI();
+
+            spaceShipScore = Spaceship.GetSpaceshipScore(1);
             
             if (createdSpaceShip == 0)
+            {
+                if (!regularSpaceship.isSpaceshipAlive)
                 {
-                    if (!regularSpaceship.isSpaceshipAlive)
-                    {
-                        this.isGameOn = false;
-                    }
-                    else if (regularSpaceship.Shoot())
-                    {
-                        Lazer lazer = new Lazer
-                        (
-                            regularSpaceship.TriangleX, regularSpaceship.TriangleY, 
-                            regularSpaceship.TriangleV, regularSpaceship.TriangleR, regularSpaceship.Damage, regularSpaceship.GetID
-                        );
-                    }
+                    this.isGameOn = false;
                 }
-                else if (createdSpaceShip == 2)
+                else if (regularSpaceship.Shoot())
                 {
-                    if (!heavySpaceship.isSpaceshipAlive)
-                    {
-                        this.isGameOn = false;
-                    }
-                    else if (heavySpaceship.Shoot())
-                    {
-                        Lazer lazer = new Lazer
-                        (
-                            heavySpaceship.TriangleX, heavySpaceship.TriangleY, 
-                            heavySpaceship.TriangleV, heavySpaceship.TriangleR, heavySpaceship.Damage, heavySpaceship.GetID
-                        );
-                    }
+                    Lazer lazer = new Lazer
+                    (
+                        regularSpaceship.TriangleX, regularSpaceship.TriangleY, 
+                        regularSpaceship.TriangleV, regularSpaceship.TriangleR, regularSpaceship.Damage, regularSpaceship.GetID
+                    );
                 }
-                else if (createdSpaceShip == 1)
+            }
+            else if (createdSpaceShip == 2)
+            {
+                if (!heavySpaceship.isSpaceshipAlive)
                 {
-                    if (!scoutSpaceship.isSpaceshipAlive)
-                    {
-                        this.isGameOn = false;
-                    }
-                    else if (scoutSpaceship.Shoot())
-                    {
-                        Lazer lazer = new Lazer
-                        (
-                            scoutSpaceship.TriangleX, scoutSpaceship.TriangleY, 
-                            scoutSpaceship.TriangleV, scoutSpaceship.TriangleR, scoutSpaceship.Damage, scoutSpaceship.GetID
-                        );
-                    }
+                    this.isGameOn = false;
                 }
-            System.Console.WriteLine(10 * (4 - ButtonSeries.GetSelectedMultiplier(2)));
+                else if (heavySpaceship.Shoot())
+                {
+                    Lazer lazer = new Lazer
+                    (
+                        heavySpaceship.TriangleX, heavySpaceship.TriangleY, 
+                        heavySpaceship.TriangleV, heavySpaceship.TriangleR, heavySpaceship.Damage, heavySpaceship.GetID
+                    );
+                }
+            }
+            else if (createdSpaceShip == 1)
+            {
+                if (!scoutSpaceship.isSpaceshipAlive)
+                {
+                    this.isGameOn = false;
+                }
+                else if (scoutSpaceship.Shoot())
+                {
+                    Lazer lazer = new Lazer
+                    (
+                        scoutSpaceship.TriangleX, scoutSpaceship.TriangleY, 
+                        scoutSpaceship.TriangleV, scoutSpaceship.TriangleR, scoutSpaceship.Damage, scoutSpaceship.GetID
+                    );
+                }
+            }
             if (time >= 10 * (4 - ButtonSeries.GetSelectedMultiplier(2)))
             {
                 Asteroid asteroid = new Asteroid();
@@ -110,7 +112,7 @@ namespace Asteroids
                 time++;
             }
 
-            if (Spaceship.GetSpaceshipScore(1) > 3000)
+            if (spaceShipScore > 3000)
             {
                 wave = 2;
 
@@ -124,14 +126,15 @@ namespace Asteroids
                     time1++;
                 }
             }
-            
+
             base.Update();
         }
         public override void Draw()
         {
+            base.Draw();
+
             Raylib.DrawText("WAVE:", 450, 30, 35, Color.WHITE);
             Raylib.DrawText(wave.ToString(), 580, 30, 35, Color.WHITE);
-            base.Draw();
             userInterface.DrawUI();
         }
 

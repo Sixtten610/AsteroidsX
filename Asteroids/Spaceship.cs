@@ -234,7 +234,7 @@ namespace Asteroids
                                
             }
             
-            for (int index = asteroidList.Count - 1; index > 0; index--)
+            for (int index = asteroidList.Count - 1; index > -1; index--)
             {
                 for (int i = 0; i < 3; i++)
                 {
