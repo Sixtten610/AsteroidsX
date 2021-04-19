@@ -14,6 +14,7 @@ namespace Asteroids
             multiPlayer,
             singlePlayerGame,
             multiPlayerGame,
+            pause,
             end
         }
         
@@ -90,13 +91,29 @@ namespace Asteroids
                 }
                 else if (screen == GameState.singlePlayerGame)
                 {
-                    singlePlayerGame.CreateSinglePlayerShip();
-                    singlePlayerGame.Update();
-                    singlePlayerGame.Draw();
-                    
-                    if (!singlePlayerGame.ContinueGame)
+                    pauseScreen.isPaused();
+
+                    if (pauseScreen.GetIfPaused)
                     {
-                        screen = GameState.end;
+
+                        pauseScreen.Update();
+                        pauseScreen.Draw();
+
+                        if (pauseScreen.isMainMenuPressed())
+                        {
+                            screen = GameState.title;
+                        }
+                    }
+                    else
+                    {
+                        singlePlayerGame.CreateSinglePlayerShip();
+                        singlePlayerGame.Update();
+                        singlePlayerGame.Draw();
+
+                        if (!singlePlayerGame.ContinueGame)
+                        {
+                            screen = GameState.end;
+                        }
                     }
                 }
                 else if (screen == GameState.multiPlayer)

@@ -25,6 +25,7 @@ namespace Asteroids
         {
             Raylib.DrawText("SCORE:", 30, 28, 35, ButtonSeries.GetSelectedColor(3));
             Raylib.DrawText(Spaceship.GetSpaceshipScore(1).ToString(), 180, 28, 35, ButtonSeries.GetSelectedColor(3));
+            Raylib.DrawText("PAUSE [P]", 800, 28, 35, ButtonSeries.GetSelectedColor(3));
 
             UserInterfaceKey.DrawAll();
         }
