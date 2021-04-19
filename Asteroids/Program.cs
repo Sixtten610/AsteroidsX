@@ -24,6 +24,8 @@ namespace Asteroids
 
             TitleScreen titleScreen = new TitleScreen();
 
+            PauseScreen pauseScreen = new PauseScreen();
+
             DifficultyScreen difficultyScreen = new DifficultyScreen();
 
             SinglePlayer singlePlayer = new SinglePlayer();
