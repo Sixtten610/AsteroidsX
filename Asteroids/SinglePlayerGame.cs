@@ -11,8 +11,7 @@ namespace Asteroids
         ScoutSpaceship scoutSpaceship;
         UserInterface userInterface = new UserInterface();
         private int spaceShipScore;
-        private int time = 0;
-        private int time1 = 0;
+        private int[] time = new int[3];
         int createdSpaceShip;
         int wave = 1;
 
@@ -102,28 +101,43 @@ namespace Asteroids
                     );
                 }
             }
-            if (time >= 10 * (4 - ButtonSeries.GetSelectedMultiplier(2)))
+            if (time[0] >= 10 * (4 - ButtonSeries.GetSelectedMultiplier(2)))
             {
                 Asteroid asteroid = new Asteroid();
-                time = 0;
+                time[0] = 0;
             }
             else
             {
-                time++;
+                time[0]++;
             }
 
             if (spaceShipScore > 3000)
             {
                 wave = 2;
 
-                if (time1 == 600)
+                if (time[1] == 600)
                 {
                     MissileAsteroid missileAsteroid = new MissileAsteroid();
-                    time1 = 0;
+                    time[1] = 0;
                 }
                 else
                 {
-                    time1++;
+                    time[1]++;
+                }
+            }
+
+            if (spaceShipScore > 5000)
+            {
+                wave = 3;
+
+                if (time[2] == 1000)
+                {
+                    ScatterAsteroid scatterAsteroid = new ScatterAsteroid();
+                    time[2] = 0;
+                }
+                else
+                {
+                    time[2]++;
                 }
             }
 

@@ -7,7 +7,7 @@ namespace Asteroids
 {
     public class Asteroid
     {
-        private static List<Asteroid> asteroidList = new List<Asteroid>();
+        protected static List<Asteroid> asteroidList = new List<Asteroid>();
 
         protected Rectangle rectangle = new Rectangle();
 
@@ -23,9 +23,9 @@ namespace Asteroids
         protected double asteroidMoveSpeed;
         protected int hp;
 
+
         protected Vector2 circlePos;
         protected Color asteroidColor;
-
 
         public Asteroid()
         {
@@ -88,6 +88,7 @@ namespace Asteroids
                 }
             }
         }
+        
 
         protected List<Lazer> lazerList = Lazer.LazerList;
         protected virtual void CollisionWithLine(int asteroidIndex)
@@ -95,16 +96,15 @@ namespace Asteroids
             for (int index = lazerList.Count - 1; index > -1; index--)
             {
                 // om skott krockar med astroid
-                if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].circlePos, asteroidList[asteroidIndex].GetAsteroidHitboxSize, lazerList[index].GetRect))
+                if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].GetCirclePos, asteroidList[asteroidIndex].GetAsteroidHitboxSize, lazerList[index].GetRect))
                 {
-                    
                     // - skott dmg && ta bort skott && + score för spaceship
-                    asteroidList[asteroidIndex].hp -= lazerList[index].GetDamage; 
+                    asteroidList[asteroidIndex].Hp -= lazerList[index].GetDamage; 
                     Spaceship.AddToScore(lazerList[index].GetID, lazerList[index].GetDamage);
                     Lazer.RemoceInstanceOfLine(index);
 
                     // om hp efter -dmg >=0 ta bort astroid också
-                    if (asteroidList[asteroidIndex].hp <= 0)
+                    if (asteroidList[asteroidIndex].Hp <= 0)
                     {
                         asteroidList.Remove(asteroidList[asteroidIndex]);
                     }
@@ -172,6 +172,18 @@ namespace Asteroids
             get
             {
                 return rectangle.width/2;
+            }
+        }
+
+        public int Hp
+        {
+            get
+            {
+                return hp;
+            }
+            set
+            {
+                hp = Math.Max(value, 0);
             }
         }
     }

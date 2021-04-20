@@ -8,7 +8,7 @@ namespace Asteroids
     public class MissileAsteroid : Asteroid
     {
         protected static Random random = new Random();
-        int followShip;
+        protected int followShip;
 
         public MissileAsteroid()
         {
