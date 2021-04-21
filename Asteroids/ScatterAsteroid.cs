@@ -15,7 +15,7 @@ namespace Asteroids
 
             asteroidColor = Color.PURPLE;
 
-            asteroidMoveSpeed = 0.05 * ButtonSeries.GetSelectedMultiplier(2);
+            asteroidMoveSpeed = 0.3 * ButtonSeries.GetSelectedMultiplier(2);
 
             hp = 400;
 
@@ -39,7 +39,7 @@ namespace Asteroids
                     {
                         for (int i = 0; i < 10; i++)
                         {
-                            ScatterAsteroidSub scatterAsteroidSub = new ScatterAsteroidSub();    
+                            ScatterAsteroidSub scatterAsteroidSub = new ScatterAsteroidSub(asteroidList[asteroidIndex].GetCirclePos);    
                         }
 
                         asteroidList.Remove(asteroidList[asteroidIndex]);

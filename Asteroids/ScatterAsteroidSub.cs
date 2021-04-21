@@ -7,8 +7,11 @@ namespace Asteroids
 {
     public class ScatterAsteroidSub : Asteroid
     {
-        public ScatterAsteroidSub()
+        private Vector2 spawnLocation;
+        public ScatterAsteroidSub(Vector2 spawnLocation)
         {
+            this.spawnLocation = spawnLocation;
+
             centerOfRect = new Vector2(rectangle.width/2, rectangle.width/2);
 
             asteroidColor = Color.PINK;
@@ -20,8 +23,8 @@ namespace Asteroids
 
         protected override void SpawnLocation()
         {
-            OriginX = 0;
-            OriginY = 0;
+            OriginX = spawnLocation.X;
+            OriginY = spawnLocation.Y;
         }
     }
 }
