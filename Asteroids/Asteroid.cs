@@ -43,7 +43,7 @@ namespace Asteroids
 
             asteroidList.Add(this);
         }
-        private void SpawnLocation()
+        protected virtual void SpawnLocation()
         {
             int randomConst = generator.Next(0,4);
             switch (randomConst)
