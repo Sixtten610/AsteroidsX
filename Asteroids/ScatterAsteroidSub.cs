@@ -8,17 +8,11 @@ namespace Asteroids
     public class ScatterAsteroidSub : Asteroid
     {
         private Vector2 spawnLocation;
-        public ScatterAsteroidSub(Vector2 spawnLocation)
+        public ScatterAsteroidSub(Vector2 location)
         {
-            this.spawnLocation = spawnLocation;
-
-            centerOfRect = new Vector2(rectangle.width/2, rectangle.width/2);
+            spawnLocation = location;
 
             asteroidColor = Color.PINK;
-
-            SpawnLocation();
-
-            asteroidList.Add(this);
         }
 
         protected override void SpawnLocation()

@@ -144,19 +144,19 @@ namespace Asteroids
 
         private void CheckKeyInput()
         {
-            if (Raylib.IsKeyDown(keyInput[0]))
+            if (Raylib.IsKeyDown(keyInput[0]) && yPlanePos > 0)
             {
                 yPlanePos -= planeMoveSpeed;
             }
-            else if (Raylib.IsKeyDown(keyInput[1]))
+            else if (Raylib.IsKeyDown(keyInput[1]) && yPlanePos < 1000)
             {
                 yPlanePos += planeMoveSpeed;
             }
-            if (Raylib.IsKeyDown(keyInput[2]))
+            if (Raylib.IsKeyDown(keyInput[2]) && xPlanePos > 0)
             {
                 xPlanePos -= planeMoveSpeed;
             }
-            else if (Raylib.IsKeyDown(keyInput[3]))
+            else if (Raylib.IsKeyDown(keyInput[3]) && xPlanePos < 1000)
             {
                 xPlanePos += planeMoveSpeed;
             }

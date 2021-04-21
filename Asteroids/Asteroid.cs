@@ -171,7 +171,7 @@ namespace Asteroids
         {
             get
             {
-                return rectangle.width/2;
+                return rectangle.width/1.7f;
             }
         }
 

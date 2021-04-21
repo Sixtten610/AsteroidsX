@@ -37,7 +37,7 @@ namespace Asteroids
                     // om hp efter -dmg >=0 ta bort astroid också
                     if (asteroidList[asteroidIndex].Hp <= 0)    
                     {
-                        for (int i = 0; i < 10; i++)
+                        for (int i = 0; i < 20; i++)
                         {
                             ScatterAsteroidSub scatterAsteroidSub = new ScatterAsteroidSub(asteroidList[asteroidIndex].GetCirclePos);    
                         }
