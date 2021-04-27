@@ -33,7 +33,7 @@ namespace Asteroids
 
 
         protected int spaceshipID;
-        protected int score = 5100;
+        protected int score = 0;
 
         // LINE #############################################################
 
