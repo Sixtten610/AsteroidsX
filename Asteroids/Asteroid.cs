@@ -22,6 +22,7 @@ namespace Asteroids
         protected double y;
         protected double asteroidMoveSpeed;
         protected int hp;
+        protected int worth;
 
 
         protected Vector2 circlePos;
@@ -37,7 +38,7 @@ namespace Asteroids
 
             asteroidMoveSpeed = 1;
 
-            hp = 100;
+            hp = worth = 50;
             
             SpawnLocation();
 
@@ -93,21 +94,24 @@ namespace Asteroids
         protected List<Lazer> lazerList = Lazer.LazerList;
         protected virtual void CollisionWithLine(int asteroidIndex)
         {
+            // för varje instans av Lazer tittar om kollision med astroid;
             for (int index = lazerList.Count - 1; index > -1; index--)
             {
                 // om skott krockar med astroid
                 if (Raylib.CheckCollisionCircleRec(asteroidList[asteroidIndex].GetCirclePos, asteroidList[asteroidIndex].GetAsteroidHitboxSize, lazerList[index].GetRect))
-                {
+                {  
                     // - skott dmg && ta bort skott && + score för spaceship
                     asteroidList[asteroidIndex].Hp -= lazerList[index].GetDamage; 
-                    Spaceship.AddToScore(lazerList[index].GetID, lazerList[index].GetDamage);
-                    Lazer.RemoceInstanceOfLine(index);
 
                     // om hp efter -dmg >=0 ta bort astroid också
                     if (asteroidList[asteroidIndex].Hp <= 0)
                     {
+                        // lägger till poäng för asteroid
+                        Spaceship.AddToScore(lazerList[index].GetID, asteroidList[asteroidIndex].worth);
+                        // tar bort instans av astroid
                         asteroidList.Remove(asteroidList[asteroidIndex]);
                     }
+                    Lazer.RemoceInstanceOfLine(index);
                 }
             }            
         }
@@ -149,8 +153,6 @@ namespace Asteroids
 
             circlePos = new Vector2((float)x,(float)y);
         }
-
-
 
         public static List<Asteroid> AsteroidList
         {

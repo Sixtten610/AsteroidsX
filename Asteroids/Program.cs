@@ -55,10 +55,10 @@ namespace Asteroids
                     {
                         screen = GameState.singlePlayer;
                     }
-                    else if (titleScreen.isMultiPlayerPressed)
-                    {
-                        screen = GameState.multiPlayer;
-                    }
+                    // else if (titleScreen.isMultiPlayerPressed)
+                    // {
+                    //     screen = GameState.multiPlayer;
+                    // }
                     else if (titleScreen.isDifficultyPressed)
                     {
                         screen = GameState.difficulty;
@@ -116,20 +116,20 @@ namespace Asteroids
                         }
                     }
                 }
-                else if (screen == GameState.multiPlayer)
-                {
-                    multiPlayer.Update();
-                    multiPlayer.Draw();
+                // else if (screen == GameState.multiPlayer)
+                // {
+                //     multiPlayer.Update();
+                //     multiPlayer.Draw();
 
-                    if (multiPlayer.isBackPressed)
-                    {
-                        screen = GameState.title;
-                    }
-                    else if (multiPlayer.isPlayPressed)
-                    {
-                        screen = GameState.multiPlayerGame;
-                    }
-                }
+                //     if (multiPlayer.isBackPressed)
+                //     {
+                //         screen = GameState.title;
+                //     }
+                //     else if (multiPlayer.isPlayPressed)
+                //     {
+                //         screen = GameState.multiPlayerGame;
+                //     }
+                // }
                 else if (screen == GameState.end)
                 {
                     endScreen.Update();
