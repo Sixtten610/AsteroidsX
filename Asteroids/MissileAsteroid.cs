@@ -20,7 +20,7 @@ namespace Asteroids
 
             asteroidMoveSpeed = 1 * ButtonSeries.GetSelectedMultiplier(2);
 
-            hp = 200;
+            hp = worth = 200;
 
             followShip = random.Next(0, spaceshipList.Count);
 
