@@ -1,27 +1,26 @@
 using System;
 using Raylib_cs;
 using System.Numerics;
-using System.Collections.Generic;
 
 namespace Asteroids
 {
-    public class ScatterAsteroid : MissileAsteroid
+    public class MissileScatterAsteroid : ScatterAsteroid
     {
-        public ScatterAsteroid()
+        public MissileScatterAsteroid()
         {
-            rectangle.width = rectangle.height = 120;
+            rectangle.width = rectangle.height = 150;
 
             centerOfRect = new Vector2(rectangle.width/2, rectangle.width/2);
 
-            asteroidColor = Color.PURPLE;
+            asteroidColor = Color.GOLD;
 
-            asteroidMoveSpeed = 0.7 * ButtonSeries.GetSelectedMultiplier(2);
+            asteroidMoveSpeed = 0.4 * ButtonSeries.GetSelectedMultiplier(2);
 
-            hp = worth = 400;
+            hp = worth = 1000;
 
             followShip = random.Next(0, spaceshipList.Count);
         }
-        
+
         protected override void CollisionWithLine(int asteroidIndex)
         {
             for (int index = lazerList.Count - 1; index > -1; index--)
@@ -37,7 +36,7 @@ namespace Asteroids
                     // om hp efter -dmg >=0 ta bort astroid också
                     if (asteroidList[asteroidIndex].Hp <= 0)    
                     {
-                        for (int i = 0; i < 20; i++)
+                        for (int i = 0; i < 50; i++)
                         {
                             ScatterAsteroidSub scatterAsteroidSub = new ScatterAsteroidSub(asteroidList[asteroidIndex].GetCirclePos);    
                         }
@@ -47,5 +46,7 @@ namespace Asteroids
                 }
             }            
         }
+        
     }
+    
 }

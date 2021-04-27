@@ -12,6 +12,8 @@ namespace Asteroids
             System.Console.WriteLine(location.X);
             System.Console.WriteLine(location.Y);
 
+            asteroidMoveSpeed = 3;
+
             asteroidColor = Color.PINK;
 
             OriginX = location.X;

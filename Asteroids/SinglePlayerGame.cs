@@ -11,7 +11,7 @@ namespace Asteroids
         ScoutSpaceship scoutSpaceship;
         UserInterface userInterface = new UserInterface();
         private int spaceShipScore;
-        private int[] time = new int[3];
+        private int[] time = new int[4];
         int createdSpaceShip;
         int wave = 1;
 
@@ -111,7 +111,7 @@ namespace Asteroids
                 time[0]++;
             }
 
-            if (spaceShipScore > 3000)
+            if (spaceShipScore >= 2000)
             {
                 wave = 2;
 
@@ -126,7 +126,7 @@ namespace Asteroids
                 }
             }
 
-            if (spaceShipScore > 5000)
+            if (spaceShipScore >= 4000)
             {
                 wave = 3;
 
@@ -138,6 +138,21 @@ namespace Asteroids
                 else
                 {
                     time[2]++;
+                }
+            }
+
+            if (spaceShipScore >= 6000)
+            {
+                wave = 4;
+
+                if (time[3] == 2000)
+                {
+                    MissileScatterAsteroid missileScatterAsteroid = new MissileScatterAsteroid();
+                    time[3] = 0;
+                }
+                else
+                {
+                    time[3]++;
                 }
             }
 
