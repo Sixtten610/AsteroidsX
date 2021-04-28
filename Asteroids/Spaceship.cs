@@ -10,33 +10,35 @@ namespace Asteroids
         static protected List<Spaceship> spaceshipList = new List<Spaceship>();
 
         // SPACESHIP #########################################################
+        // p-position för kanter av triangl
         private Vector2[] pointTriangle = new Vector2[3];
         private bool isAlive = true;
 
-        private int xPlanePos = 500;
+        // spawn
+        private int xPlanePos = 500;    
         private int yPlanePos = 500;
 
-        // regular 2
+        // move speed
         protected int planeMoveSpeed = 2; 
         private double rotation = 1.565;
-        // regular 0,08
+
         protected double rotationSpeed = 0.08;
 
         private double[] xCircle = {0, 0};
         private double[] yCircle = {0, 0};
         
-        // regular 40
+        // storlek, skada och färg
         protected float spaceshipSize = 40;
-        // regular 20
         protected int damage = 100;
         private Color color;
 
-
+        // id för spaceship klassen
         protected int spaceshipID;
         protected int score = 0;
 
         // LINE #############################################################
 
+        // information för skott
         private Vector2[] pointLine = new Vector2[2];
         private double[] xLine = {0, 0};
         private double[] yLine = {0, 0};
@@ -45,12 +47,13 @@ namespace Asteroids
 
         protected KeyboardKey[] keyInput;
 
+        // i konstruktorn deklareras ett ID
         public Spaceship(int ID)
         {
             this.spaceshipID = ID;
         }
 
-
+        // property för att returnera ID
         public int GetID
         {
             get
@@ -58,6 +61,8 @@ namespace Asteroids
                 return spaceshipID;
             }
         }
+
+        // återger rymdskeppets poäng när tillkallad
         public static int GetSpaceshipScore(int id)
         {
             for (int index = spaceshipList.Count - 1; index > -1; index--)
@@ -77,6 +82,8 @@ namespace Asteroids
             }
         }
         
+        // lägger till poäng för skepp, tar emot två parametrar, en int för id(specifika skeppet)
+        // samt ytterligare en int för hur mycket poäng som ska adderas
         public static void AddToScore(int id, int score)
         {
             for (int index = spaceshipList.Count - 1; index > -1; index--)
@@ -92,6 +99,7 @@ namespace Asteroids
             this.score += score;
         }
 
+        // uppdaterar alla rymdskepp, (spaceship är anpassad för multiplayer)
         static public void UpdateAll()
         {
             for (int index = spaceshipList.Count - 1; index > -1; index--)
@@ -99,6 +107,8 @@ namespace Asteroids
                 spaceshipList[index].Update();
             }
         }
+        // Update uppdaterar trianglens rotation och placering på planet
+        // samt tillkallar Alive() metoden för att titta om spelaren lever
         private void Update()
         {
             Alive();
@@ -130,6 +140,7 @@ namespace Asteroids
                 }
             }
         }
+        // ritar alla rymdskepp
         static public void DrawAll()
         {
             for (int index = spaceshipList.Count - 1; index > -1; index--)
@@ -137,11 +148,13 @@ namespace Asteroids
                 spaceshipList[index].Draw();
             }
         }
+        // ritat triangeln (rymdskeppet) för instansen
         private void Draw()
         {
             Raylib.DrawTriangleLines(pointTriangle[0], pointTriangle[1], pointTriangle[2], color);
         }
 
+        // tittar om spelaren trycker ned någon knapp, om trycker ned knapp. förflytta spelaren isåfall
         private void CheckKeyInput()
         {
             if (Raylib.IsKeyDown(keyInput[0]) && yPlanePos > 0)
@@ -169,10 +182,11 @@ namespace Asteroids
             {
                 rotation += rotationSpeed;
             }
-
+            // tillkallar positionsmetod därefter
             Math1();
         }
 
+        // räknar ut position för de tre kanterna av trianglen samt skottvinkel
         private void Math1()
         {
             int invert = 1;
@@ -191,7 +205,7 @@ namespace Asteroids
             xLine[1] = Math.Cos(rotation);
             yLine[1] = Math.Sin(rotation);
         }
-
+        // om spelaren trycket på skjutknappen returnera true
         public virtual bool Shoot()
         {
             if (Raylib.IsKeyPressed(keyInput[6]))
@@ -204,8 +218,9 @@ namespace Asteroids
             }
         }
 
+        // hämtar lista med asteroider
         private List<Asteroid> asteroidList = Asteroid.AsteroidList;
-
+        // Alive chackar om spelaren lever, om inte ta bort instans av spaceship
         private void Alive()
         {
             if (Delete())
@@ -215,10 +230,11 @@ namespace Asteroids
             }
 
         }
+        // ta-bort-instans-av-spaceship metod
         protected bool Delete()
         {
             Vector2[] point = new Vector2[3];
-
+            // lägger in de tre hörnen i en vector2 array med tre plattser
             for (int index = 0; index < 3; index++)
             {
                 if (index == 0)
@@ -233,7 +249,8 @@ namespace Asteroids
                 }
                                
             }
-            
+            // tittar om någon av de tre hörnen kolliderar med asteroiden,
+            // detta görs för alla asteroider i listan asteroidList
             for (int index = asteroidList.Count - 1; index > -1; index--)
             {
                 for (int i = 0; i < 3; i++)
@@ -247,7 +264,8 @@ namespace Asteroids
 
             return false;
         }
-
+        // fler properties: med syftet att ge instanser av skott information om spelaren
+        // för att beräkna skottvinkel mm:
         public int TriangleX
         {
             get
@@ -314,7 +332,7 @@ namespace Asteroids
                 return yPlanePos;
             }
         }
-
+        // återger vinkel som spacehip är roterad i
         private double TriangleRot()
         {
             double mycalcInRadians = Math.Acos(xLine[1]);
@@ -330,6 +348,8 @@ namespace Asteroids
         }
 
         // "https://www.oreilly.com/library/view/c-cookbook/0596003390/ch01s03.html"
+        // denna metod använde jag från lkänken ovan eftersom det är ett mycket
+        // bra och effektivt sätt att konvertera radianer till vinklar
         private double ConvertRadiansToDegrees(double radians)
         {
             double degrees = (180 / Math.PI) * radians;
@@ -337,6 +357,7 @@ namespace Asteroids
             return (degrees);
         }
 
+        // koverterar double värden till floats
         private float ToFloat(double value)
         {
             return (float)value;

@@ -13,16 +13,20 @@ namespace Asteroids
             singlePlayer,
             multiPlayer,
             singlePlayerGame,
-            multiPlayerGame,
-            pause,
+            // multiPlayerGame,
             end
         }
         
         static void Main(string[] args)
         {
+            // skapar en 1000x1000 pixel ruta
             Raylib.InitWindow(1000, 1000, "Asteroids");
             Raylib.SetTargetFPS(60);
+            
+            // enum för gamestates
+            GameState screen = GameState.title;
 
+            // de olika skärmarna som man kan navigera
             TitleScreen titleScreen = new TitleScreen();
 
             PauseScreen pauseScreen = new PauseScreen();
@@ -31,21 +35,24 @@ namespace Asteroids
 
             SinglePlayer singlePlayer = new SinglePlayer();
 
-            SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
-
-            MultiPlayer multiPlayer = new MultiPlayer();
-
             EndScreen endScreen = new EndScreen();
 
-            GameState screen = GameState.title;
+            // MultiPlayer multiPlayer = new MultiPlayer();
+
+            // single-player spel
+            SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
 
             bool restartGames = false;
 
+            // spel loop
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.BLACK);
-
+                
+                // if [..] if else för vilken spelskärm som ska visas
+                // skärmarna har Uppdate och Draw metoder, samt knappar för att
+                // reagera med annat UI i prog.cs
                 if (screen == GameState.title)
                 {
                     titleScreen.Update();
@@ -102,6 +109,7 @@ namespace Asteroids
                         if (pauseScreen.isMainMenuPressed())
                         {
                             screen = GameState.title;
+                            restartGames = true;
                         }
                     }
                     else
@@ -142,6 +150,7 @@ namespace Asteroids
                     }
                 }
 
+                // skapar nytt spel om metoden kallas
                 if (restartGames)
                 {
                     ObjectGame.Clear();

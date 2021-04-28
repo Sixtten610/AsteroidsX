@@ -7,12 +7,13 @@ namespace Asteroids
 {
     public class Asteroid
     {
+        // lista med alla astroieder & en static random eftersom det är onödigt att skapa en ny varje gång
         protected static List<Asteroid> asteroidList = new List<Asteroid>();
-
-        protected Rectangle rectangle = new Rectangle();
-
-        protected Vector2 centerOfRect;
         static Random generator = new Random();
+
+        // rectangle och Vector2 för själva astroiden & position
+        protected Rectangle rectangle = new Rectangle();
+        protected Vector2 centerOfRect;
 
         protected float randDegree = generator.Next(0, 360);
         protected float OriginX;
@@ -21,6 +22,8 @@ namespace Asteroids
         protected double x;
         protected double y;
         protected double asteroidMoveSpeed;
+        
+        // hp & hur mycket poäng som ska tilldelas när astroiden dör
         protected int hp;
         protected int worth;
 
@@ -28,6 +31,7 @@ namespace Asteroids
         protected Vector2 circlePos;
         protected Color asteroidColor;
 
+        // konstruktor för klassen Asteroid, bestämmer storlek, färg, fart och hp/worth och sedan lägger till i listan
         public Asteroid()
         {
             rectangle.width = rectangle.height = 50;
@@ -44,6 +48,7 @@ namespace Asteroids
 
             asteroidList.Add(this);
         }
+        // SpawnLocation metoden bestämmer plats astroiden skapas (ett spann på 100px, 100px utanför kanten av spelskärmen) 
         protected virtual void SpawnLocation()
         {
             int randomConst = generator.Next(0,4);
@@ -70,8 +75,11 @@ namespace Asteroids
                 break;
             }
         }
+        // UpdateAll metodens syfte är att uppdatera alla asteroids i listan. 
+        // static eftersom onödig att skapa för varje klass
         public static void UpdateAll()
         {
+            // går igenom x"asteroidList.Count" antal astroider 
             for (int index = asteroidList.Count - 1; index > -1; index--)
             {
                 // uppdatera position
@@ -90,8 +98,9 @@ namespace Asteroids
             }
         }
         
-
+        // hämtar in lista med skott
         protected List<Lazer> lazerList = Lazer.LazerList;
+        // syftet med metoden är att checka om ett skott(Line) kolliderar med en asteroid
         protected virtual void CollisionWithLine(int asteroidIndex)
         {
             // för varje instans av Lazer tittar om kollision med astroid;
@@ -111,11 +120,13 @@ namespace Asteroids
                         // tar bort instans av astroid
                         asteroidList.Remove(asteroidList[asteroidIndex]);
                     }
+                    // tar bort skott(index)
                     Lazer.RemoceInstanceOfLine(index);
                 }
             }            
         }
         
+        // ritar alla asteroider på skärrmen, som UpdateAll är DrawAll också static eftersom onödigt att skapa en flör varje klass
         public static void DrawAll()
         {
             for (int index = asteroidList.Count - 1; index > -1; index--)
@@ -124,6 +135,7 @@ namespace Asteroids
             }
         }
 
+        // draw metoden specifik för varje asteroid-klass, metodens syfte är att rita ut instansen när tillkallad av DrawAll
         protected virtual void Draw()
         {
             Raylib.DrawRectanglePro(rectangle, centerOfRect, randDegree, asteroidColor);
@@ -131,7 +143,7 @@ namespace Asteroids
             Raylib.DrawText(this.hp.ToString(), (int)circlePos.X - 20, (int)circlePos.Y - 10, 28, Color.BLACK);
         }
 
-
+        // om asteroiden är utanför ett visst område -> ta bort annars inte
         private bool OutOfBounds(int index)
         {
             if (asteroidList[index].x > 1250 || asteroidList[index].y > 1250 || asteroidList[index].x < -250 || asteroidList[index].y < -250)
@@ -140,11 +152,14 @@ namespace Asteroids
             }
             return false;
         }
-
+        
+        // klassmetoden uppdaterar position för instansen av asteroid
         protected virtual void Update()
         {
             asteroidMoveSpeed -= 1;
 
+            // x & y är kordinater i ett 2d plan. randDegree är en slumpad float (vinkeln)
+            // asteroidMoveSpeed kan antas som hypotenusan. Med detta kan x & y beräknas
             x = ((Math.Cos(randDegree) * asteroidMoveSpeed) + OriginX);
             y = ((Math.Sin(randDegree) * asteroidMoveSpeed) + OriginY);
 
@@ -154,6 +169,7 @@ namespace Asteroids
             circlePos = new Vector2((float)x,(float)y);
         }
 
+        // properties för att returnera olika saker i.e listor position eller hitbox storlek
         public static List<Asteroid> AsteroidList
         {
             get
@@ -176,7 +192,7 @@ namespace Asteroids
                 return rectangle.width/1.7f;
             }
         }
-
+        // Hp skiljer sig från de andra då den också har en set som ändrar på int-hp
         public int Hp
         {
             get
