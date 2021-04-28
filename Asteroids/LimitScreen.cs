@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using System;
 using Raylib_cs;
@@ -6,9 +7,10 @@ namespace Asteroids
 {
     public class LimitScreen
     {
+        static List<LimitScreen> limitList = new List<LimitScreen>();
+
         static Random random = new Random();
         int side;
-        Vector2 position = new Vector2();
 
         static Rectangle rectangle = new Rectangle();
 
@@ -51,28 +53,48 @@ namespace Asteroids
                 break;
             }
 
-            beginDrawWarning = true;
+            activeTime = 300 * (int)ButtonSeries.GetSelectedMultiplier(2);
+
+            limitList.Add(this);
         }
 
-        Color clearRed = new Color(255,0,0,100);
+        private Color clearRed = new Color(255,0,0,100);
+        private int deltaTime = 0;
+        private int rounds = 0;
+        private  int activeTime;
+        static bool active = false;
 
-        private int deltaTime;
-        private int rounds;
-        private  int activeTime = 300 * (int)ButtonSeries.GetSelectedMultiplier(2);
-        static bool active;
-        private bool beginDrawWarning;
 
-        public void Update()
+
+
+        public static void UpdateAll()
         {
-            if (!active && beginDrawWarning)
+            for (int index = limitList.Count - 1; index > -1; index--)
+            {
+                limitList[index].Update();
+            }
+        }
+
+        private void Update()
+        {
+            if (active == false)
             {
                 DrawWarning();
+
+                if (rounds == 5)
+                {
+                    active = true;
+                }
             }
-            else if (active && activeTime != 0)
+            else if (active && activeTime > 0)
             {
                 activeTime--;
                 DrawRectangle();
             }
+            // else if (activeTime == 0)
+            // {
+            //     limitList.Remove(this);
+            // }
         }
 
         private void DrawRectangle()
@@ -85,32 +107,29 @@ namespace Asteroids
             if (deltaTime < 60)
             {
                 Raylib.DrawRectangleRec(rectangle, clearRed);
+                deltaTime++;
             }
-            else if (deltaTime <= 120)
+            else if (deltaTime == 120)
             {
                 deltaTime = 0;
                 rounds++;
-            }
-            else
-            {
-                deltaTime++;
             }
         }
 
 
 
-        public static Rectangle LimitRectangle
+        public Rectangle LimitRectangle
         {
             get
             {
                 return rectangle;
             }
         }
-        public static bool isActive
+        public static List<LimitScreen> LimitList
         {
             get
             {
-                return active;
+                return limitList;
             }
         }
 
