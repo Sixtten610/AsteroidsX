@@ -260,7 +260,12 @@ namespace Asteroids
                         return true;
                     }
                 }
-            }            
+            }
+
+            if (LimitScreen.isActive && Raylib.CheckCollisionPointRec(pointTriangle[0], LimitScreen.LimitRectangle))
+            {
+                return true;
+            }
 
             return false;
         }

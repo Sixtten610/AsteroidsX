@@ -55,6 +55,8 @@ namespace Asteroids
             userInterface.UpdateUI();
 
             spaceShipScore = Spaceship.GetSpaceshipScore(1);
+
+            
             
             if (createdSpaceShip == 0)
             {
