@@ -38,7 +38,7 @@ namespace Asteroids
                     {
                         for (int i = 0; i < 20 * ButtonSeries.GetSelectedMultiplier(2); i++)
                         {
-                            ScatterAsteroidSub scatterAsteroidSub = new ScatterAsteroidSub(asteroidList[asteroidIndex].GetCirclePos);    
+                            ScatterAsteroidSub scatterAsteroidSub = new ScatterAsteroidSub(asteroidList[asteroidIndex].GetCirclePos, Color.YELLOW);    
                         }
 
                         asteroidList.Remove(asteroidList[asteroidIndex]);

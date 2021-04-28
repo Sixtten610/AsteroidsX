@@ -34,7 +34,7 @@ namespace Asteroids
 
         // id för spaceship klassen
         protected int spaceshipID;
-        protected int score = 0;
+        protected int score = 7000000;
 
         // LINE #############################################################
 
@@ -262,10 +262,13 @@ namespace Asteroids
                 }
             }
 
-            if (LimitScreen.isActive && Raylib.CheckCollisionPointRec(pointTriangle[0], LimitScreen.LimitRectangle))
-            {
-                return true;
-            }
+            // for (int index = LimitScreen.LimitList.Count - 1; index > -1; index--)
+            // {
+            //     if (Raylib.CheckCollisionPointRec(pointTriangle[0], LimitScreen.LimitList[index].LimitRectangle))
+            //     {
+            //         return true;
+            //     }   
+            // }
 
             return false;
         }

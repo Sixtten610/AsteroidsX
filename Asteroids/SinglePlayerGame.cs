@@ -10,8 +10,9 @@ namespace Asteroids
         HeavySpaceship heavySpaceship;
         ScoutSpaceship scoutSpaceship;
         UserInterface userInterface = new UserInterface();
+
         private int spaceShipScore;
-        private int[] time = new int[4];
+        private int[] time = new int[5];
         int createdSpaceShip;
         int wave = 1;
 
@@ -56,7 +57,7 @@ namespace Asteroids
 
             spaceShipScore = Spaceship.GetSpaceshipScore(1);
 
-            
+
             
             if (createdSpaceShip == 0)
             {
@@ -155,6 +156,21 @@ namespace Asteroids
                 else
                 {
                     time[3]++;
+                }
+            }
+
+            if (spaceShipScore >= 8000)
+            {
+                wave = 5;
+
+                if (time[4] == 300)
+                {
+                    LimitScreen limitScreen = new LimitScreen();
+                    time[4] = 0;
+                }
+                else
+                {
+                    time[4]++;
                 }
             }
 

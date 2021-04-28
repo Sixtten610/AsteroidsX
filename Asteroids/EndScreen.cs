@@ -22,9 +22,9 @@ namespace Asteroids
         {
             Raylib.DrawText("DEFEAT", 400, 250, 50, Color.WHITE);
 
-            Raylib.DrawText("TOTAL SCORE:", 350, 350, 20, Color.WHITE);
+            // Raylib.DrawText("TOTAL SCORE:", 350, 350, 20, Color.WHITE);
 
-            Raylib.DrawText(Spaceship.GetSpaceshipScore(1).ToString(), 510, 350, 20, ButtonSeries.GetSelectedColor(3));
+            // Raylib.DrawText(Spaceship.GetSpaceshipScore(1).ToString(), 510, 350, 20, ButtonSeries.GetSelectedColor(3));
 
             Button.DrawAll(4);
         }

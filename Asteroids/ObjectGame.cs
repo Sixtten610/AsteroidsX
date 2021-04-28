@@ -26,6 +26,7 @@ namespace Asteroids
             Spaceship.UpdateAll();
             Lazer.UpdateAll();
             Asteroid.UpdateAll();
+            LimitScreen.UpdateAll();
         }
     }
 }
