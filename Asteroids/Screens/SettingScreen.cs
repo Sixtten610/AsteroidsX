@@ -19,7 +19,11 @@ namespace Asteroids
 
         public override void Draw()
         {
-            Raylib.DrawText("SETTINGS", 395, 250, 40, Color.WHITE);
+            Raylib.DrawText("SETTINGS", 396, 250, 40, Color.WHITE);
+
+            Raylib.DrawText("ELIMINATION ZONE", 405, 350, 20, Color.WHITE);
+
+
 
             Button.DrawAll(7);
         }
