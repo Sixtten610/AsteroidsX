@@ -3,7 +3,7 @@ using Raylib_cs;
 
 namespace Asteroids
 {
-    public class SinglePlayer : ObjectScreen
+    public class SinglePlayerScreen : ObjectScreen
     {
         // BUTTONS ###########################################
 

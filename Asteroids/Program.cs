@@ -33,7 +33,7 @@ namespace Asteroids
 
             DifficultyScreen difficultyScreen = new DifficultyScreen();
 
-            SinglePlayer singlePlayer = new SinglePlayer();
+            SinglePlayerScreen singlePlayerScreen = new SinglePlayerScreen();
 
             EndScreen endScreen = new EndScreen();
 
@@ -84,14 +84,14 @@ namespace Asteroids
                 }
                 else if (screen == GameState.singlePlayer)
                 {
-                    singlePlayer.Update();
-                    singlePlayer.Draw();
+                    singlePlayerScreen.Update();
+                    singlePlayerScreen.Draw();
                     
-                    if (singlePlayer.isBackPressed)
+                    if (singlePlayerScreen.isBackPressed)
                     {
                         screen = GameState.title;
                     }
-                    else if (singlePlayer.isPlayPressed)
+                    else if (singlePlayerScreen.isPlayPressed)
                     {
                         screen = GameState.singlePlayerGame;
                     }

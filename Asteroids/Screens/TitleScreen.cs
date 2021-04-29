@@ -10,7 +10,7 @@ namespace Asteroids
         ButtonSingle singlePlayer = new ButtonSingle(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 400, "SINGLEPLAYER", 16, 6, 1);
         ButtonSingle multiPlayer = new ButtonSingle(45, 300, 35, Color.WHITE, Color.RED, Color.LIGHTGRAY, 350, 450, "MULTIPLAYER", 26, 6, 1);
         ButtonSingle difficulty = new ButtonSingle(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 500, "DIFFICULTY", 42, 6, 1);
-        ButtonSingle settings = new ButtonSingle(45, 300, 35, Color.WHITE, Color.RED, Color.LIGHTGRAY, 350, 550, "SETTINGS", 56, 6, 1);
+        ButtonSingle settings = new ButtonSingle(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 550, "SETTINGS", 56, 6, 1);
         ButtonSingle quit = new ButtonSingle(45, 300, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 350, 600, "QUIT", 106, 6, 1);
         
 
@@ -49,6 +49,14 @@ namespace Asteroids
             get
             {
                 return difficulty.IsPressed();
+            }
+        }
+
+        public bool isSettingsPressed
+        {
+            get
+            {
+                return settings.IsPressed();
             }
         }
 
