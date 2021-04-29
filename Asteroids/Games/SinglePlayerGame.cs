@@ -159,9 +159,8 @@ namespace Asteroids
                 }
             }
 
-            if (spaceShipScore >= 8000)
+            if (spaceShipScore >= 8000 && ButtonSeries.GetSelectedButtonID(4) == 0)
             {
-                System.Console.WriteLine(time[4]);
                 wave = 5;
 
                 if (time[4] == 2000)

@@ -33,6 +33,8 @@ namespace Asteroids
 
             DifficultyScreen difficultyScreen = new DifficultyScreen();
 
+            SettingScreen settingScreen = new SettingScreen();
+
             SinglePlayerScreen singlePlayerScreen = new SinglePlayerScreen();
 
             EndScreen endScreen = new EndScreen();
@@ -69,6 +71,10 @@ namespace Asteroids
                     else if (titleScreen.isDifficultyPressed)
                     {
                         screen = GameState.difficulty;
+                    }
+                    else if (titleScreen.isSettingsPressed)
+                    {
+                        screen = GameState.settings;
                     }
                 }
                 else if (screen == GameState.difficulty)
@@ -138,6 +144,17 @@ namespace Asteroids
                 //         screen = GameState.multiPlayerGame;
                 //     }
                 // }
+                else if (screen == GameState.settings)
+                {
+                    settingScreen.Update();
+                    settingScreen.Draw();
+
+                    if (singlePlayerScreen.isBackPressed)
+                    {
+                        screen = GameState.title;
+                    }
+                    
+                }
                 else if (screen == GameState.end)
                 {
                     endScreen.Update();

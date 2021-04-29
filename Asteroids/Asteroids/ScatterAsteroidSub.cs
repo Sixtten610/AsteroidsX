@@ -9,9 +9,6 @@ namespace Asteroids
     {
         public ScatterAsteroidSub(Vector2 location, Color color)
         {
-            System.Console.WriteLine(location.X);
-            System.Console.WriteLine(location.Y);
-
             asteroidMoveSpeed = 3;
 
             asteroidColor = color;

@@ -108,6 +108,7 @@ namespace Asteroids
             if (deltaTime < 30)
             {
                 Raylib.DrawRectangleRec(rectangle, clearRed);
+                Raylib.DrawText("ELIMINATION ZONE", 380, 70, 30, Color.RED);
             }
             else if (deltaTime == 60)
             {
