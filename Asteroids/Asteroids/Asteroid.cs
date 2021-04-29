@@ -9,6 +9,7 @@ namespace Asteroids
     {
         // lista med alla astroieder & en static random eftersom det är onödigt att skapa en ny varje gång
         protected static List<Asteroid> asteroidList = new List<Asteroid>();
+        protected List<Lazer> lazerList = Lazer.LazerList;
         static Random generator = new Random();
 
         // rectangle och Vector2 för själva astroiden & position
@@ -16,8 +17,8 @@ namespace Asteroids
         protected Vector2 centerOfRect;
 
         protected float randDegree = generator.Next(0, 360);
-        protected float OriginX;
-        protected float OriginY;
+        protected float originX;
+        protected float originY;
         
         protected double x;
         protected double y;
@@ -55,23 +56,23 @@ namespace Asteroids
             switch (randomConst)
             {
                 case 0:
-                OriginX = generator.Next(-200, -100);
-                OriginY = generator.Next(0, 1000);
+                originX = generator.Next(-200, -100);
+                originY = generator.Next(0, 1000);
                 break;
 
                 case 1:
-                OriginX = generator.Next(1100, 1200);
-                OriginY = generator.Next(0, 1000);
+                originX = generator.Next(1100, 1200);
+                originY = generator.Next(0, 1000);
                 break;
                 
                 case 2:
-                OriginY = generator.Next(-200, -100);
-                OriginX = generator.Next(0, 1000);
+                originY = generator.Next(-200, -100);
+                originX = generator.Next(0, 1000);
                 break;
 
                 case 3:
-                OriginY = generator.Next(1100, 1200);
-                OriginX = generator.Next(0, 1000);
+                originY = generator.Next(1100, 1200);
+                originX = generator.Next(0, 1000);
                 break;
             }
         }
@@ -99,7 +100,6 @@ namespace Asteroids
         }
         
         // hämtar in lista med skott
-        protected List<Lazer> lazerList = Lazer.LazerList;
         // syftet med metoden är att checka om ett skott(Line) kolliderar med en asteroid
         protected virtual void CollisionWithLine(int asteroidIndex)
         {
@@ -160,8 +160,8 @@ namespace Asteroids
 
             // x & y är kordinater i ett 2d plan. randDegree är en slumpad float (vinkeln)
             // asteroidMoveSpeed kan antas som hypotenusan. Med detta kan x & y beräknas
-            x = ((Math.Cos(randDegree) * asteroidMoveSpeed) + OriginX);
-            y = ((Math.Sin(randDegree) * asteroidMoveSpeed) + OriginY);
+            x = ((Math.Cos(randDegree) * asteroidMoveSpeed) + originX);
+            y = ((Math.Sin(randDegree) * asteroidMoveSpeed) + originY);
 
             rectangle.x = (float)x;
             rectangle.y = (float)y;

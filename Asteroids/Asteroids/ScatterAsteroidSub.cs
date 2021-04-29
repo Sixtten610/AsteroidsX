@@ -13,8 +13,8 @@ namespace Asteroids
 
             asteroidColor = color;
 
-            OriginX = location.X;
-            OriginY = location.Y;
+            originX = location.X;
+            originY = location.Y;
         }
     }
 }

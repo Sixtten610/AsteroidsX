@@ -5,28 +5,25 @@ using System.Collections.Generic;
 
 namespace Asteroids
 {
-    public class MissileAsteroid : Asteroid
+    public class ScatterAsteroidSubMissile : ScatterAsteroidSub
     {
-        protected List<Spaceship> spaceshipList = Spaceship.SpaceshipList;
-        protected static Random random = new Random();
-        protected int followShip;
+        private List<Spaceship> spaceshipList = Spaceship.SpaceshipList;
+        protected Random random = new Random();
+        private int followShip;
 
-        public MissileAsteroid()
+        public ScatterAsteroidSubMissile(Vector2 location, Color color, int hp) : base (location, color)
         {
-            rectangle.width = rectangle.height = 70;
+            asteroidMoveSpeed = 0.5 * ButtonSeries.GetSelectedMultiplier(2);
 
-            centerOfRect = new Vector2(rectangle.width/2, rectangle.width/2);
+            this.hp = hp;
 
-            asteroidColor = Color.DARKGRAY;
+            asteroidColor = color;
 
-            asteroidMoveSpeed = 1 * ButtonSeries.GetSelectedMultiplier(2);
-
-            hp = worth = 200;
+            originX = location.X;
+            originY = location.Y;
 
             followShip = random.Next(0, spaceshipList.Count);
-
         }
-
         protected override void Update()
         {
             for (int index = spaceshipList.Count - 1; index > -1; index--)
@@ -61,13 +58,6 @@ namespace Asteroids
                 }
                 
             }
-        }
-
-        protected override void Draw()
-        {
-            Raylib.DrawRectanglePro(rectangle, centerOfRect, randDegree, asteroidColor);
-
-            Raylib.DrawText(this.hp.ToString(), (int)circlePos.X - 20, (int)circlePos.Y - 10, 28, Color.BLACK);
         }
     }
 }

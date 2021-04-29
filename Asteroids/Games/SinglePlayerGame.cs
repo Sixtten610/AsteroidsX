@@ -12,7 +12,7 @@ namespace Asteroids
         UserInterface userInterface = new UserInterface();
 
         private int spaceShipScore;
-        private int[] time = new int[5];
+        private int[] time = new int[6];
         int createdSpaceShip;
         int wave = 1;
 
@@ -171,6 +171,28 @@ namespace Asteroids
                 else
                 {
                     time[4]++;
+                }
+            }
+
+            if (spaceShipScore >= 10000)
+            {
+                if (ButtonSeries.GetSelectedButtonID(4) == 0)
+                {
+                    wave = 6;    
+                }
+                else
+                {
+                    wave = 5;
+                }
+
+                if (time[5] == 4000)
+                {
+                    MissileScatterAsteroidMissile missileScatterAsteroidMissile = new MissileScatterAsteroidMissile();
+                    time[5] = 0;
+                }
+                else
+                {
+                    time[5]++;
                 }
             }
 
