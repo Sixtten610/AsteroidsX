@@ -13,6 +13,7 @@ namespace Asteroids
             Lazer.LazerList.Clear();
             Asteroid.AsteroidList.Clear();
             Spaceship.SpaceshipList.Clear();
+            LimitScreen.LimitList.Clear();
         }
 
         public override void Draw()

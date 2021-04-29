@@ -7,12 +7,17 @@ namespace Asteroids
 {
     public class LimitScreen
     {
-        static List<LimitScreen> limitList = new List<LimitScreen>();
+        private static List<LimitScreen> limitList = new List<LimitScreen>();
 
-        static Random random = new Random();
-        int side;
+        private static Random random = new Random();
+        private int side;
+        private Rectangle rectangle = new Rectangle();
+        private static Color clearRed = new Color(255,0,0,100);
+        private int deltaTime = 0;
+        private int rounds = 0;
+        private  int activeTime;
+        private bool active = false;
 
-        static Rectangle rectangle = new Rectangle();
 
         public LimitScreen()
         {
@@ -53,19 +58,10 @@ namespace Asteroids
                 break;
             }
 
-            activeTime = 300 * (int)ButtonSeries.GetSelectedMultiplier(2);
+            activeTime = 200 * (int)ButtonSeries.GetSelectedMultiplier(2);
 
             limitList.Add(this);
         }
-
-        private Color clearRed = new Color(255,0,0,100);
-        private int deltaTime = 0;
-        private int rounds = 0;
-        private  int activeTime;
-        static bool active = false;
-
-
-
 
         public static void UpdateAll()
         {
@@ -77,13 +73,16 @@ namespace Asteroids
 
         private void Update()
         {
-            if (active == false)
+            if (!active)
             {
-                DrawWarning();
 
-                if (rounds == 5)
+                if (rounds == 6)
                 {
                     active = true;
+                }
+                else
+                {
+                    DrawWarning();
                 }
             }
             else if (active && activeTime > 0)
@@ -91,10 +90,10 @@ namespace Asteroids
                 activeTime--;
                 DrawRectangle();
             }
-            // else if (activeTime == 0)
-            // {
-            //     limitList.Remove(this);
-            // }
+            else if (activeTime == 0)
+            {
+                limitList.Remove(this);
+            }
         }
 
         private void DrawRectangle()
@@ -104,19 +103,18 @@ namespace Asteroids
 
         private void DrawWarning()
         {
-            if (deltaTime < 60)
+            deltaTime++;
+
+            if (deltaTime < 30)
             {
                 Raylib.DrawRectangleRec(rectangle, clearRed);
-                deltaTime++;
             }
-            else if (deltaTime == 120)
+            else if (deltaTime == 60)
             {
                 deltaTime = 0;
                 rounds++;
             }
         }
-
-
 
         public Rectangle LimitRectangle
         {
@@ -133,10 +131,13 @@ namespace Asteroids
             }
         }
 
-
-
-
-
+        public bool LimitActive
+        {
+            get
+            {
+                return active;
+            }
+        }
 
     }
 }

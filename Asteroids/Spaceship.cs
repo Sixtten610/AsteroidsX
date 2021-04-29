@@ -262,13 +262,13 @@ namespace Asteroids
                 }
             }
 
-            // for (int index = LimitScreen.LimitList.Count - 1; index > -1; index--)
-            // {
-            //     if (Raylib.CheckCollisionPointRec(pointTriangle[0], LimitScreen.LimitList[index].LimitRectangle))
-            //     {
-            //         return true;
-            //     }   
-            // }
+            for (int index = LimitScreen.LimitList.Count - 1; index > -1; index--)
+            {
+                if (LimitScreen.LimitList[index].LimitActive && Raylib.CheckCollisionPointRec(pointTriangle[0], LimitScreen.LimitList[index].LimitRectangle))
+                {
+                    return true;
+                }   
+            }
 
             return false;
         }

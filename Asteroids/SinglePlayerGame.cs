@@ -161,9 +161,10 @@ namespace Asteroids
 
             if (spaceShipScore >= 8000)
             {
+                System.Console.WriteLine(time[4]);
                 wave = 5;
 
-                if (time[4] == 300)
+                if (time[4] == 2000)
                 {
                     LimitScreen limitScreen = new LimitScreen();
                     time[4] = 0;
