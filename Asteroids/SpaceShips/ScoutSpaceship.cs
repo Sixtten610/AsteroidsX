@@ -19,7 +19,7 @@ namespace Asteroids
 
             this.spaceshipSize = 30;
             this.rotationSpeed = 0.09;
-            this.damage = 4;
+            this.damage = 8;
             this.planeMoveSpeed = 3;
 
             spaceshipList.Add(this);

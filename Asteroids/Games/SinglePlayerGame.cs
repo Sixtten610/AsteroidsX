@@ -55,7 +55,7 @@ namespace Asteroids
                 }
                 else if (ButtonSeries.GetSelectedButtonID(1) == 3)
                 {
-                    sniperSpaceship = new SniperSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE, 30);
+                    sniperSpaceship = new SniperSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE, 20);
                 }
                 createSinglePlayerShip = false;
             }

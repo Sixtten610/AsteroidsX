@@ -11,7 +11,7 @@ namespace Asteroids
         {
             this.spaceshipSize = 50;
             this.cooldown = cooldownSet = cooldown;
-            this.damage = 400;
+            this.damage = 500;
         }
 
         public override bool Shoot()
