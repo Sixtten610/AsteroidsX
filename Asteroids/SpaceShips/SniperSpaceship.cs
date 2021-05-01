@@ -16,7 +16,7 @@ namespace Asteroids
 
         public override bool Shoot()
         {
-            if (Raylib.IsKeyDown(keyInput[6]) && cooldown == 0)
+            if (Raylib.IsKeyDown(keyInput[6]) && cooldown <= 0)
             {
                 cooldown = cooldownSet;
                 return true;
