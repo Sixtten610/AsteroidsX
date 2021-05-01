@@ -8,6 +8,7 @@ namespace Asteroids
     public class Spaceship
     {
         static protected List<Spaceship> spaceshipList = new List<Spaceship>();
+        private List<Asteroid> asteroidList = Asteroid.AsteroidList;
 
         // SPACESHIP #########################################################
         // p-position för kanter av triangl
@@ -34,7 +35,7 @@ namespace Asteroids
 
         // id för spaceship klassen
         protected int spaceshipID;
-        protected int score = 7000000;
+        protected int score = 0;
 
         // LINE #############################################################
 
@@ -100,7 +101,7 @@ namespace Asteroids
         }
 
         // uppdaterar alla rymdskepp, (spaceship är anpassad för multiplayer)
-        static public void UpdateAll()
+        public static void UpdateAll()
         {
             for (int index = spaceshipList.Count - 1; index > -1; index--)
             {
@@ -141,7 +142,7 @@ namespace Asteroids
             }
         }
         // ritar alla rymdskepp
-        static public void DrawAll()
+        public static void DrawAll()
         {
             for (int index = spaceshipList.Count - 1; index > -1; index--)
             {
@@ -219,7 +220,6 @@ namespace Asteroids
         }
 
         // hämtar lista med asteroider
-        private List<Asteroid> asteroidList = Asteroid.AsteroidList;
         // Alive chackar om spelaren lever, om inte ta bort instans av spaceship
         private void Alive()
         {
@@ -310,7 +310,7 @@ namespace Asteroids
             }
         }
 
-        public bool isSpaceshipAlive
+        public bool IsSpaceshipAlive
         {
             get
             {
