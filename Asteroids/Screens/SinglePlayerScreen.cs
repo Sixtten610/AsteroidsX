@@ -10,6 +10,7 @@ namespace Asteroids
         ButtonSeries scout = new ButtonSeries(45, 200, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 100, 400, "SCOUT", 16, 6, 3, 1, 1, 0);
         ButtonSeries fighter = new ButtonSeries(45, 200, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 100, 450, "FIGHTER", 16, 6, 3, 1, 0, 0);
         ButtonSeries heavy = new ButtonSeries(45, 200, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 100, 500, "HEAVY", 16, 6, 3, 1, 2, 0);
+        ButtonSeries sniper = new ButtonSeries(45, 200, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 100, 550, "SNIPER", 16, 6, 3, 1, 3, 0);
 
         ButtonSeries lite = new ButtonSeries(100, 100, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 100, 600, "LITE", 10, 33, 3, 3, 0, 0);
         ButtonSeries blue = new ButtonSeries(100, 100, 35, Color.BLUE, Color.BLUE, Color.SKYBLUE, 220, 600, "BLUE", 5, 33, 3, 3, 1, 0);

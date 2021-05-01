@@ -9,6 +9,8 @@ namespace Asteroids
         RegularSpaceship regularSpaceship;
         HeavySpaceship heavySpaceship;
         ScoutSpaceship scoutSpaceship;
+        SniperSpaceship sniperSpaceship;
+
         UserInterface userInterface = new UserInterface();
 
         private int spaceShipScore;
@@ -32,6 +34,10 @@ namespace Asteroids
             {
                 createdSpaceShip = 1;
             }
+            else if (ButtonSeries.GetSelectedButtonID(1) == 3)
+            {
+                createdSpaceShip = 3;
+            }
 
             if (createSinglePlayerShip)
             {
@@ -46,6 +52,10 @@ namespace Asteroids
                 else if (ButtonSeries.GetSelectedButtonID(1) == 1)
                 {
                     scoutSpaceship = new ScoutSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
+                }
+                else if (ButtonSeries.GetSelectedButtonID(1) == 3)
+                {
+                    sniperSpaceship = new SniperSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE, 30);
                 }
                 createSinglePlayerShip = false;
             }
@@ -104,6 +114,22 @@ namespace Asteroids
                     );
                 }
             }
+            else if (createdSpaceShip == 3)
+            {
+                if (!sniperSpaceship.isSpaceshipAlive)
+                {
+                    this.isGameOn = false;
+                }
+                else if (sniperSpaceship.Shoot())
+                {
+                    Lazer lazer = new Lazer
+                    (
+                        sniperSpaceship.TriangleX, sniperSpaceship.TriangleY, 
+                        sniperSpaceship.TriangleV, sniperSpaceship.TriangleR, sniperSpaceship.Damage, sniperSpaceship.GetID
+                    );
+                }
+            }
+
             if (time[0] >= 10 * (4 - ButtonSeries.GetSelectedMultiplier(2)))
             {
                 Asteroid asteroid = new Asteroid();
