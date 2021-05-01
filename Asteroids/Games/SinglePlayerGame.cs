@@ -14,7 +14,7 @@ namespace Asteroids
         UserInterface userInterface = new UserInterface();
 
         private int spaceShipScore;
-        private int[] time = new int[6];
+        private int[] time = new int[7];
         int createdSpaceShip;
         int wave = 1;
 
@@ -71,7 +71,7 @@ namespace Asteroids
             
             if (createdSpaceShip == 0)
             {
-                if (!regularSpaceship.isSpaceshipAlive)
+                if (!regularSpaceship.IsSpaceshipAlive)
                 {
                     this.isGameOn = false;
                 }
@@ -86,7 +86,7 @@ namespace Asteroids
             }
             else if (createdSpaceShip == 2)
             {
-                if (!heavySpaceship.isSpaceshipAlive)
+                if (!heavySpaceship.IsSpaceshipAlive)
                 {
                     this.isGameOn = false;
                 }
@@ -101,7 +101,7 @@ namespace Asteroids
             }
             else if (createdSpaceShip == 1)
             {
-                if (!scoutSpaceship.isSpaceshipAlive)
+                if (!scoutSpaceship.IsSpaceshipAlive)
                 {
                     this.isGameOn = false;
                 }
@@ -116,7 +116,7 @@ namespace Asteroids
             }
             else if (createdSpaceShip == 3)
             {
-                if (!sniperSpaceship.isSpaceshipAlive)
+                if (!sniperSpaceship.IsSpaceshipAlive)
                 {
                     this.isGameOn = false;
                 }
@@ -220,6 +220,76 @@ namespace Asteroids
                 {
                     time[5]++;
                 }
+            }
+
+            if (spaceShipScore >= 20000)
+            {
+                if (time[6] == 0)
+                {
+                    time[6] = 20000 - spaceShipScore / 10;
+                }
+                else
+                {
+                    time[6]--;
+                }
+
+                if (ButtonSeries.GetSelectedButtonID(4) == 0)
+                {
+                    wave = 7;    
+                }
+                else
+                {
+                    wave = 6;
+                }
+
+                if (time[6] == 1)
+                {
+                    for (int i = 0; i < 200; i++)
+                    {    
+                        Asteroid asteroid = new Asteroid();
+                    }
+                }
+                else if (time[6] == 2000)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        MissileAsteroid missileAsteroid = new MissileAsteroid();
+                    }
+                }
+                else if (time[6] == 4000)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        ScatterAsteroid scatterAsteroid = new ScatterAsteroid();
+                    }
+                }
+                else if (time[6] == 6000)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        MissileScatterAsteroid missileScatterAsteroid = new MissileScatterAsteroid();
+                    }
+                }
+                else if (time[6] == 8000)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        MissileScatterAsteroidMissile missileScatterAsteroidMissile = new MissileScatterAsteroidMissile();
+                    }
+                }
+
+                // försökte med switch, men får error 'a constant value is expected':
+                
+                // int t = time[6];
+                // switch (t)
+                // {
+                //     case t when (time[6] == 1):
+
+                //     break;
+                
+                // }
+                // därav byter jag till if-else
+
             }
 
             base.Update();
