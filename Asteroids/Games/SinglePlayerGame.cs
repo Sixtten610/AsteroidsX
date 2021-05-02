@@ -233,7 +233,7 @@ namespace Asteroids
                     time[6]--;
                 }
 
-                if (ButtonSeries.GetSelectedButtonID(4) == 0)
+                if (ButtonSeries.GetSelectedButtonID(2) == 4)
                 {
                     wave = 7;    
                 }
@@ -251,14 +251,14 @@ namespace Asteroids
                 }
                 else if (time[6] == 2000)
                 {
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 3; i++)
                     {
                         MissileAsteroid missileAsteroid = new MissileAsteroid();
                     }
                 }
                 else if (time[6] == 4000)
                 {
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 5; i++)
                     {
                         ScatterAsteroid scatterAsteroid = new ScatterAsteroid();
                     }
