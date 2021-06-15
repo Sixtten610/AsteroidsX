@@ -13,7 +13,7 @@ namespace Asteroids
             singlePlayer,
             multiPlayer,
             singlePlayerGame,
-            // multiPlayerGame,
+            multiPlayerGame,
             end
         }
         
@@ -39,7 +39,7 @@ namespace Asteroids
 
             EndScreen endScreen = new EndScreen();
 
-            // MultiPlayer multiPlayer = new MultiPlayer();
+            MultiPlayer multiPlayer = new MultiPlayer();
 
             // single-player spel
             SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
@@ -64,10 +64,10 @@ namespace Asteroids
                     {
                         screen = GameState.singlePlayer;
                     }
-                    // else if (titleScreen.isMultiPlayerPressed)
-                    // {
-                    //     screen = GameState.multiPlayer;
-                    // }
+                    else if (titleScreen.isMultiPlayerPressed)
+                    {
+                        screen = GameState.multiPlayer;
+                    }
                     else if (titleScreen.isDifficultyPressed)
                     {
                         screen = GameState.difficulty;
@@ -130,20 +130,20 @@ namespace Asteroids
                         }
                     }
                 }
-                // else if (screen == GameState.multiPlayer)
-                // {
-                //     multiPlayer.Update();
-                //     multiPlayer.Draw();
+                else if (screen == GameState.multiPlayer)
+                {
+                    multiPlayer.Update();
+                    multiPlayer.Draw();
 
-                //     if (multiPlayer.isBackPressed)
-                //     {
-                //         screen = GameState.title;
-                //     }
-                //     else if (multiPlayer.isPlayPressed)
-                //     {
-                //         screen = GameState.multiPlayerGame;
-                //     }
-                // }
+                    if (multiPlayer.isBackPressed)
+                    {
+                        screen = GameState.title;
+                    }
+                    else if (multiPlayer.isPlayPressed)
+                    {
+                        screen = GameState.multiPlayerGame;
+                    }
+                }
                 else if (screen == GameState.settings)
                 {
                     settingScreen.Update();
