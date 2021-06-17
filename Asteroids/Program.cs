@@ -39,7 +39,7 @@ namespace Asteroids
 
             EndScreen endScreen = new EndScreen();
 
-            MultiPlayer multiPlayer = new MultiPlayer();
+            MultiPlayerScreen multiPlayer = new MultiPlayerScreen();
 
             // single-player spel
             SinglePlayerGame singlePlayerGame = new SinglePlayerGame();
