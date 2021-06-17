@@ -49,6 +49,10 @@ namespace Asteroids
         {
             Raylib.DrawText("MULTIPLAYER", 350, 250, 40, Color.WHITE);
 
+            Raylib.DrawText("P1", 264, 350, 40, Color.WHITE);
+
+            Raylib.DrawText("P2", 700, 350, 40, Color.WHITE);
+
             DrawStats(0);
 
             DrawStats(600);
