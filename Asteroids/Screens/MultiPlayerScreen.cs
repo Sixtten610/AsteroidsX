@@ -32,7 +32,7 @@ namespace Asteroids
         ButtonSeries skyblue2 = new ButtonSeries(100, 100, 35, Color.DARKGREEN, Color.DARKGREEN, Color.LIME, 674, 600, "LIME", 9, 30, 5, 7, 1, 0);
         ButtonSeries purple2 = new ButtonSeries(100, 100, 35, Color.VIOLET, Color.VIOLET, Color.PURPLE, 800, 600, "LONE", 5, 30, 5, 7, 2, 0);
 
-        Button play = new ButtonSingle(300, 300, 70, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 10000, 400, "PLAY", 60, 110, 5);
+        Button play = new ButtonSingle(100, 800, 70, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 100, 705, "PLAY", 310, 17, 5);
         Button back = new ButtonSingle(45, 120, 35, Color.WHITE, Color.WHITE, Color.LIGHTGRAY, 50, 850, "BACK", 13, 6, 5);
 
 

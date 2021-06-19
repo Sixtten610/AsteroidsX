@@ -28,7 +28,7 @@ namespace Asteroids
         }
         public override void Draw()
         {
-            Raylib.DrawText("SINGLEPLAYER", 375, 250, 40, Color.WHITE);
+            Raylib.DrawText("SINGLEPLAYER", 350, 250, 40, Color.WHITE);
 
             Raylib.DrawText("SPEED", 310, 400, 15, Color.WHITE);
             Raylib.DrawText("....", 380, 332, 100, Color.WHITE);

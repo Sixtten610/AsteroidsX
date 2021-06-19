@@ -22,21 +22,58 @@ namespace Asteroids
         private bool createSinglePlayerShip = true;
         public void CreateSinglePlayerShip()
         {
-            if (ButtonSeries.GetSelectedButtonID(1) == 0)
+            // (ny if-sats , simplare)
+            for (int i = 0; i < 4; i++)
             {
-                createdSpaceShip = 0;       
+                if (ButtonSeries.GetSelectedButtonID(1) == i)
+                {
+                    createdSpaceShip = i;       
+                }
             }
-            else if (ButtonSeries.GetSelectedButtonID(1) == 2)
-            {
-                createdSpaceShip = 2;
-            }
-            else if (ButtonSeries.GetSelectedButtonID(1) == 1)
-            {
-                createdSpaceShip = 1;
-            }
-            else if (ButtonSeries.GetSelectedButtonID(1) == 3)
-            {
-                createdSpaceShip = 3;
+
+            // gammal kod
+            { 
+            // int t = ButtonSeries.GetSelectedButtonID(1);
+            // switch (t)
+            // {
+            //     case 1 when (t == 0):
+            //     {
+            //         createdSpaceShip = 0;  
+            //     }
+            //     break;
+            //     case 1 when (t == 1):
+            //     {
+            //         createdSpaceShip = 1;  
+            //     }
+            //     break;
+            //     case 1 when (t == 2):
+            //     {
+            //         createdSpaceShip = 2;  
+            //     }
+            //     break;
+            //     case 1 when (t == 3):
+            //     {
+            //         createdSpaceShip = 3;  
+            //     }
+            //     break;
+            // }
+
+            // if (ButtonSeries.GetSelectedButtonID(1) == 0)
+            // {
+            //     createdSpaceShip = 0;       
+            // }
+            // else if (ButtonSeries.GetSelectedButtonID(1) == 2)
+            // {
+            //     createdSpaceShip = 2;
+            // }
+            // else if (ButtonSeries.GetSelectedButtonID(1) == 1)
+            // {
+            //     createdSpaceShip = 1;
+            // }
+            // else if (ButtonSeries.GetSelectedButtonID(1) == 3)
+            // {
+            //     createdSpaceShip = 3;
+            // }
             }
 
             if (createSinglePlayerShip)
