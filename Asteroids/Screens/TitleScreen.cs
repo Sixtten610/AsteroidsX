@@ -27,7 +27,7 @@ namespace Asteroids
         {
             Raylib.DrawText("ASTEROIDS", 335, 250, 55, Color.WHITE);
 
-            Raylib.DrawText("Version 2.65.0", 850, 960, 20, Color.WHITE);
+            Raylib.DrawText("Version 2.67.0", 850, 960, 20, Color.WHITE);
 
             Button.DrawAll(1);
         }
