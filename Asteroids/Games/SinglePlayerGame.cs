@@ -12,160 +12,127 @@ namespace Asteroids
         SniperSpaceship sniperSpaceship;
 
         UserInterface userInterface = new UserInterface();
-
+        private int selectedButton = ButtonSeries.GetSelectedButtonID(1);
         private int spaceShipScore;
         private int[] time = new int[7];
-        int createdSpaceShip;
-        int wave = 1;
-
-
+        private int wave = 1;
+        private int createdSpaceShip;
         private bool createSinglePlayerShip = true;
+
+
         public void CreateSinglePlayerShip()
         {
-            // (ny if-sats , simplare)
             for (int i = 0; i < 4; i++)
             {
-                if (ButtonSeries.GetSelectedButtonID(1) == i)
+                if (selectedButton == i)
                 {
-                    createdSpaceShip = i;       
+                    createdSpaceShip = i;     
                 }
-            }
-
-            // gammal kod
-            { 
-            // int t = ButtonSeries.GetSelectedButtonID(1);
-            // switch (t)
-            // {
-            //     case 1 when (t == 0):
-            //     {
-            //         createdSpaceShip = 0;  
-            //     }
-            //     break;
-            //     case 1 when (t == 1):
-            //     {
-            //         createdSpaceShip = 1;  
-            //     }
-            //     break;
-            //     case 1 when (t == 2):
-            //     {
-            //         createdSpaceShip = 2;  
-            //     }
-            //     break;
-            //     case 1 when (t == 3):
-            //     {
-            //         createdSpaceShip = 3;  
-            //     }
-            //     break;
-            // }
-
-            // if (ButtonSeries.GetSelectedButtonID(1) == 0)
-            // {
-            //     createdSpaceShip = 0;       
-            // }
-            // else if (ButtonSeries.GetSelectedButtonID(1) == 2)
-            // {
-            //     createdSpaceShip = 2;
-            // }
-            // else if (ButtonSeries.GetSelectedButtonID(1) == 1)
-            // {
-            //     createdSpaceShip = 1;
-            // }
-            // else if (ButtonSeries.GetSelectedButtonID(1) == 3)
-            // {
-            //     createdSpaceShip = 3;
-            // }
             }
 
             if (createSinglePlayerShip)
             {
-                if (ButtonSeries.GetSelectedButtonID(1) == 0)
+                switch (selectedButton)
                 {
-                    regularSpaceship = new RegularSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);       
-                }
-                else if (ButtonSeries.GetSelectedButtonID(1) == 2)
-                {
-                    heavySpaceship = new HeavySpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
-                }
-                else if (ButtonSeries.GetSelectedButtonID(1) == 1)
-                {
-                    scoutSpaceship = new ScoutSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
-                }
-                else if (ButtonSeries.GetSelectedButtonID(1) == 3)
-                {
-                    sniperSpaceship = new SniperSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE, 20);
+                    case 0:
+                    {
+                        regularSpaceship = new RegularSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE); 
+                    }
+                    break;
+                    case 1:
+                    {
+                        scoutSpaceship = new ScoutSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
+                    }
+                    break;
+                    case 2:
+                    {
+                        heavySpaceship = new HeavySpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE);
+                    }
+                    break;
+                    case 3:
+                    {
+                        sniperSpaceship = new SniperSpaceship(1, KeyboardKey.KEY_W, KeyboardKey.KEY_S, KeyboardKey.KEY_A, KeyboardKey.KEY_D, KeyboardKey.KEY_LEFT, KeyboardKey.KEY_RIGHT, KeyboardKey.KEY_SPACE, 20);
+                    }
+                    break;
                 }
                 createSinglePlayerShip = false;
+
             }
         }
 
         public override void Update()
         {
             userInterface.UpdateUI();
-
             spaceShipScore = Spaceship.GetSpaceshipScore(1);
 
+            switch (createdSpaceShip)
+            {
+                case 0:
+                {
+                    if (!regularSpaceship.IsSpaceshipAlive)
+                    {
+                        this.isGameOn = false;
+                    }
+                    else if (regularSpaceship.Shoot())
+                    {
+                        Lazer lazer = new Lazer
+                        (
+                            regularSpaceship.TriangleX, regularSpaceship.TriangleY, 
+                            regularSpaceship.TriangleV, regularSpaceship.TriangleR, regularSpaceship.Damage, regularSpaceship.GetID
+                        );
+                    }   
+                }
+                break;
+                case 1:
+                {
+                    if (!scoutSpaceship.IsSpaceshipAlive)
+                    {
+                        this.isGameOn = false;
+                    }
+                    else if (scoutSpaceship.Shoot())
+                    {
+                        Lazer lazer = new Lazer
+                        (
+                            scoutSpaceship.TriangleX, scoutSpaceship.TriangleY, 
+                            scoutSpaceship.TriangleV, scoutSpaceship.TriangleR, scoutSpaceship.Damage, scoutSpaceship.GetID
+                        );
+                    }
+                }
+                break;
+                case 2:
+                {
+                    if (!heavySpaceship.IsSpaceshipAlive)
+                    {
+                        this.isGameOn = false;
+                    }
+                    else if (heavySpaceship.Shoot())
+                    {
+                        Lazer lazer = new Lazer
+                        (
+                            heavySpaceship.TriangleX, heavySpaceship.TriangleY, 
+                            heavySpaceship.TriangleV, heavySpaceship.TriangleR, heavySpaceship.Damage, heavySpaceship.GetID
+                        );
+                    }
+                }
+                break;
+                case 3:
+                {
+                    if (!sniperSpaceship.IsSpaceshipAlive)
+                    {
+                        this.isGameOn = false;
+                    }
+                    else if (sniperSpaceship.Shoot())
+                    {
+                        Lazer lazer = new Lazer
+                        (
+                            sniperSpaceship.TriangleX, sniperSpaceship.TriangleY, 
+                            sniperSpaceship.TriangleV, sniperSpaceship.TriangleR, sniperSpaceship.Damage, sniperSpaceship.GetID
+                        );
+                    }
+                }
+                break;
+            }
 
-            
-            if (createdSpaceShip == 0)
-            {
-                if (!regularSpaceship.IsSpaceshipAlive)
-                {
-                    this.isGameOn = false;
-                }
-                else if (regularSpaceship.Shoot())
-                {
-                    Lazer lazer = new Lazer
-                    (
-                        regularSpaceship.TriangleX, regularSpaceship.TriangleY, 
-                        regularSpaceship.TriangleV, regularSpaceship.TriangleR, regularSpaceship.Damage, regularSpaceship.GetID
-                    );
-                }
-            }
-            else if (createdSpaceShip == 2)
-            {
-                if (!heavySpaceship.IsSpaceshipAlive)
-                {
-                    this.isGameOn = false;
-                }
-                else if (heavySpaceship.Shoot())
-                {
-                    Lazer lazer = new Lazer
-                    (
-                        heavySpaceship.TriangleX, heavySpaceship.TriangleY, 
-                        heavySpaceship.TriangleV, heavySpaceship.TriangleR, heavySpaceship.Damage, heavySpaceship.GetID
-                    );
-                }
-            }
-            else if (createdSpaceShip == 1)
-            {
-                if (!scoutSpaceship.IsSpaceshipAlive)
-                {
-                    this.isGameOn = false;
-                }
-                else if (scoutSpaceship.Shoot())
-                {
-                    Lazer lazer = new Lazer
-                    (
-                        scoutSpaceship.TriangleX, scoutSpaceship.TriangleY, 
-                        scoutSpaceship.TriangleV, scoutSpaceship.TriangleR, scoutSpaceship.Damage, scoutSpaceship.GetID
-                    );
-                }
-            }
-            else if (createdSpaceShip == 3)
-            {
-                if (!sniperSpaceship.IsSpaceshipAlive)
-                {
-                    this.isGameOn = false;
-                }
-                else if (sniperSpaceship.Shoot())
-                {
-                    Lazer lazer = new Lazer
-                    (
-                        sniperSpaceship.TriangleX, sniperSpaceship.TriangleY, 
-                        sniperSpaceship.TriangleV, sniperSpaceship.TriangleR, sniperSpaceship.Damage, sniperSpaceship.GetID
-                    );
-                }
-            }
 
             if (time[0] >= 10 * (4 - ButtonSeries.GetSelectedMultiplier(2)))
             {
@@ -269,7 +236,7 @@ namespace Asteroids
                 {
                     time[6]--;
                 }
-
+                
                 if (ButtonSeries.GetSelectedButtonID(2) == 4)
                 {
                     wave = 7;    
@@ -278,55 +245,51 @@ namespace Asteroids
                 {
                     wave = 6;
                 }
-
-                if (time[6] == 1)
-                {
-                    for (int i = 0; i < 200; i++)
-                    {    
-                        Asteroid asteroid = new Asteroid();
-                    }
-                }
-                else if (time[6] == 2000)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        MissileAsteroid missileAsteroid = new MissileAsteroid();
-                    }
-                }
-                else if (time[6] == 4000)
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        ScatterAsteroid scatterAsteroid = new ScatterAsteroid();
-                    }
-                }
-                else if (time[6] == 6000)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        MissileScatterAsteroid missileScatterAsteroid = new MissileScatterAsteroid();
-                    }
-                }
-                else if (time[6] == 8000)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        MissileScatterAsteroidMissile missileScatterAsteroidMissile = new MissileScatterAsteroidMissile();
-                    }
-                }
-
-                // försökte med switch, men får error 'a constant value is expected':
                 
-                // int t = time[6];
-                // switch (t)
-                // {
-                //     case t when (time[6] == 1):
-
-                //     break;
-                
-                // }
-                // därav byter jag till if-else
-
+                int t = time[6];
+                switch (t)
+                {
+                    case 1:
+                    {
+                        for (int i = 0; i < 200; i++)
+                        {    
+                            Asteroid asteroid = new Asteroid();
+                        }
+                    }
+                    break;
+                    case 2000:
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            MissileAsteroid missileAsteroid = new MissileAsteroid();
+                        }
+                    }
+                    break;
+                    case 4000:
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            ScatterAsteroid scatterAsteroid = new ScatterAsteroid();
+                        }
+                    }
+                    break;
+                    case 6000:
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            MissileScatterAsteroid missileScatterAsteroid = new MissileScatterAsteroid();
+                        }
+                    }
+                    break;
+                    case 8000:
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            MissileScatterAsteroidMissile missileScatterAsteroidMissile = new MissileScatterAsteroidMissile();
+                        }
+                    }
+                    break;
+                }
             }
 
             base.Update();
